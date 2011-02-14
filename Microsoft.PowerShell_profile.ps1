@@ -1,3 +1,4 @@
+Import-Module Goto
 Import-Module posh-git
 Import-Module PowerTab -ArgumentList "$env:appdata\powertab\powertabconfig.xml"
 Import-Module Pscx
