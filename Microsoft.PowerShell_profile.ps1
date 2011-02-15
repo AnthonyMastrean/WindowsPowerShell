@@ -1,4 +1,5 @@
 Import-Module Goto
+Import-Module posh-flow
 Import-Module posh-git
 Import-Module PowerTab -ArgumentList "$env:appdata\powertab\powertabconfig.xml"
 Import-Module Pscx
@@ -9,7 +10,10 @@ Invoke-BatchFile $vcvars $vcargs
 
 # Set up a simple prompt, adding the git prompt parts inside git repos
 function prompt {
-    Write-Host($pwd) -nonewline
+    $host.UI.RawUi.WindowTitle = ("{0}@{1}" -f $env:username, [System.Environment]::MachineName)
+    
+    $location = ([string] $pwd).Split("\", [System.StringSplitOptions]::RemoveEmptyEntries) | Select-Object -Last 1
+    Write-Host($location) -nonewline
     $Global:GitStatus = Get-GitStatus
     Write-GitStatus $GitStatus
     return "> "
