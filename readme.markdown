@@ -12,7 +12,7 @@ Go ahead and navigate to your profile directory (in Windows Explorer or from the
 
     Microsoft.PowerShell_profile.ps1
     
-It's just a PowerShell script file that's executed every time you start the Microsoft PowerShell shell. Now, you're thinking "what can I do with this?". That's easy! Import [modules](http://msdn.microsoft.com/en-us/library/dd878324(VS.85).aspx) or [scripts](http://technet.microsoft.com/en-us/library/ee176949.aspx), define functions, variables, or [aliases](http://technet.microsoft.com/en-us/library/ee176913.aspx), or change the [prompt](http://technet.microsoft.com/en-us/library/dd347633.aspx) (you can see examples of these in my profile).
+It's just a PowerShell script file that's executed every time you start the Microsoft PowerShell shell. Now, you're thinking "what can I do with this?". That's easy! Import [modules](http://msdn.microsoft.com/en-us/library/dd878324.aspx) or [scripts](http://technet.microsoft.com/en-us/library/ee176949.aspx), define functions, variables, or [aliases](http://technet.microsoft.com/en-us/library/ee176913.aspx), or change the [prompt](http://technet.microsoft.com/en-us/library/dd347633.aspx) (you can see examples of these in my profile).
 
 Running Git on Windows
 ==========
