@@ -16,7 +16,4 @@ It's just a PowerShell script file that's executed every time you start the Micr
 
 Running Git on Windows
 ==========
-
-
-Cloning Modules
-==========
+There are many ways to run git on Windows. There are many shells to choose from, some GUI tools, but they all start with [msysgit](http://code.google.com/p/msysgit/). I do the following
