@@ -4,7 +4,7 @@ PowerShell can be a bit of a mystery when you get started. There are some fundam
 
     Test-Path $Profile
     
-If you do, great! That's where we're going to do some work. If you don't, you can create it easily.
+If you do, great! That's where we're going to do some work. If you don't, you can easily create it.
 
     New-Item -Path $profile -ItemType file -Force
 
