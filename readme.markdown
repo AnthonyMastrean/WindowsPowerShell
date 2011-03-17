@@ -1,6 +1,6 @@
 About PowerShell Profiles
 ==========
-PowerShell can be a bit of a mystery when you get started. There are some fundamentals though that, once you get started, are easy to build on. One of these mysteries is the PowerShell profile. There are actually four [profiles](http://msdn.microsoft.com/en-us/library/bb613488(VS.85).aspx)! But, the one I care about is the user profile that applies only to the Microsoft PowerShell shell. See if you have this profile already
+PowerShell can be a bit of a mystery when you get started. There are some fundamentals though that, once you get started, are easy to build on. One of these mysteries is the PowerShell profile. There are actually four [profiles](http://msdn.microsoft.com/en-us/library/bb613488.aspx)! But, the one I care about is the user profile that applies only to the Microsoft PowerShell shell. See if you have this profile already
 
     Test-Path $Profile
     
