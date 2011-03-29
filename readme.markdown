@@ -36,6 +36,6 @@ Create them.
 
 Then start a PowerShell session in the Modules directory in your user documents directory (the one next to your profile). Clone the posh-git repository.
 
-    PS> git clone https://github.com/dahlbyk/posh-git.git posh-git
+    PS:\users\<username>\WindowsPowerShell\Modules> git clone https://github.com/dahlbyk/posh-git.git posh-git
 
 Follow the instructions on their github project page under `Usage` to import their module into your shell and to get setup with the hot new prompt. Or follow the commands in my profile here, but it's not guaranteed to be up to date.
