@@ -24,7 +24,7 @@ You should see the git usage printed. At this point, you'll want to setup your s
 
 Cloning Modules
 ==========
-Now that you're all setup, let's clone some PowerShell modules from github to your local machine. The one you really want is [posh-git](https://github.com/dahlbyk/posh-git). It's going to make your PowerShell prompt go from this `X:\SecretProject>` to this `X:\SecretProject [master +3 ~2 -1 !]>`
+Now that you're all setup, let's clone some PowerShell modules from github to your local machine. The one you really want is [posh-git](https://github.com/dahlbyk/posh-git). It's going to make your PowerShell prompt go from this `X:\SecretProject>` to this `X:\SecretProject [master +3 ~2 -1 !]>`.
 
 If you don't already have a `Modules` directory
 
