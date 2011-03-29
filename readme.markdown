@@ -17,3 +17,9 @@ It's just a PowerShell script file that's executed every time you start the Micr
 Running Git on Windows
 ==========
 There are many ways to run git on Windows. There are many shells to choose from, some GUI tools, but they all start with [msysgit](http://code.google.com/p/msysgit/). I install without any "Additional icons" or "Windows Explorer integration". This is because we're going to integrate git with our PowerShell console later. I select the option to run git from the Windows Command Prompt so that the git is added to my PATH automatically. And finally, for compatibility, I checkout Windows-style and commit Unix-style. This hasn't caused me any problems yet, and I believe is a configurable option (in case you work on a project that requires another option).
+
+Confirm that the installation was successful by opening a PowerShell console and typing
+
+    git
+
+You should see the git usage printed.
