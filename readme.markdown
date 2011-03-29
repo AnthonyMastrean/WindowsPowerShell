@@ -20,6 +20,6 @@ There are many ways to run git on Windows. There are many shells to choose from,
 
 Confirm that the installation was successful by opening a PowerShell console and typing
 
-    git
+    PS> git
 
 You should see the git usage printed.
