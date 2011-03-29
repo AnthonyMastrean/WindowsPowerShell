@@ -22,4 +22,4 @@ Confirm that the installation was successful by opening a PowerShell console and
 
     PS> git
 
-You should see the git usage printed.
+You should see the git usage printed. At this point, you'll want to setup your ssh key and git credentials. I recommend going immediately to this [official git page](http://help.github.com/win-set-up-git/) and following the instructions under Set Up SSH Keys and Set Up Your Info.
