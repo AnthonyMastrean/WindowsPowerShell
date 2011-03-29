@@ -1,6 +1,6 @@
 About PowerShell Profiles
 ==========
-PowerShell can be a bit of a mystery when you get started. There are some fundamentals though that, once you get started, are easy to build on. One of these mysteries is the PowerShell profile. There are actually four [profiles](http://msdn.microsoft.com/en-us/library/bb613488.aspx)! But, the one I care about is the user profile that applies only to the Microsoft PowerShell shell. See if you have this profile already
+PowerShell can be a bit of a mystery when you get started. There are some fundamentals though that, once you get started, are easy to build on. One of these mysteries is the PowerShell profile. There are actually four [profiles](http://msdn.microsoft.com/en-us/library/bb613488.aspx)! But, the one I care about is the user profile that applies only to the Microsoft PowerShell shell. See if you have this profile already.
 
     PS> Test-Path $Profile
     
@@ -16,7 +16,7 @@ Running Git on Windows
 ==========
 There are many ways to run git on Windows. There are many shells to choose from, some GUI tools, but they all start with [msysgit](http://code.google.com/p/msysgit/). I install without any "Additional icons" or "Windows Explorer integration". This is because we're going to integrate git with our PowerShell console later. I select the option to run git from the Windows Command Prompt so that the git is added to my PATH automatically. And finally, for compatibility, I checkout Windows-style and commit Unix-style. This hasn't caused me any problems yet, and I believe is a configurable option (in case you work on a project that requires another option).
 
-Confirm that the installation was successful by opening a PowerShell console and typing
+Confirm that the installation was successful by opening a PowerShell console and running a command.
 
     PS> git
 
@@ -26,15 +26,15 @@ Cloning Modules
 ==========
 Now that you're all setup, let's clone some PowerShell modules from github to your local machine. The one you really want is [posh-git](https://github.com/dahlbyk/posh-git). It's going to make your PowerShell prompt go from this `X:\SecretProject>` to this `X:\SecretProject [master +3 ~2 -1 !]>`.
 
-If you don't already have a `Modules` directory
+If you're just setting up PowerShell, you may not have a `Modules` directory.
 
     PS> $env:PSModulePath.Split(";") | Test-Path
 
-Create them (you're really just interested in the one in your documents library).
+Create them.
 
     PS> $env:PSModulePath.Split(";") | New-Item -ItemType directory -Force
 
-Then start a PowerShell session in the Modules directory. Clone the posh-git repository like this
+Then start a PowerShell session in the Modules directory in your user documents directory (the one next to your profile). Clone the posh-git repository.
 
     PS> git clone https://github.com/dahlbyk/posh-git.git posh-git
 
