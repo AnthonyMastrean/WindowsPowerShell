@@ -9,7 +9,8 @@ $vcvars = "${env:VS100COMNTOOLS}..\..\VC\vcvarsall.bat"
 Invoke-BatchFile $vcvars $vcargs
 
 # Set up a simple prompt, adding the git prompt parts inside git repos
-function prompt {
+function prompt 
+{
     $host.UI.RawUi.WindowTitle = ("{0}@{1}" -f $env:username, [System.Environment]::MachineName)
     Write-Host($pwd) -nonewline
     $Global:GitStatus = Get-GitStatus
@@ -17,14 +18,17 @@ function prompt {
     return "> "
 }
 
-if(-not (Test-Path Function:\DefaultTabExpansion)) {
+if(-not (Test-Path Function:\DefaultTabExpansion)) 
+{
     Rename-Item Function:\TabExpansion DefaultTabExpansion
 }
 
 # Set up tab expansion and include git expansion
-function TabExpansion($line, $lastWord) {
+function TabExpansion($line, $lastWord) 
+{
     $lastBlock = [regex]::Split($line, '[|;]')[-1]
-    switch -regex ($lastBlock) {
+    switch -regex ($lastBlock) 
+    {
         'git (.*)' { GitTabExpansion $lastBlock }
         default { DefaultTabExpansion $line $lastWord }
     }
