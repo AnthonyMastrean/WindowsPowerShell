@@ -11,10 +11,12 @@ Invoke-BatchFile $vcvars $vcargs
 # Set up a simple prompt, adding the git prompt parts inside git repos
 function prompt 
 {
-    $host.UI.RawUi.WindowTitle = ("{0}@{1}" -f $env:username, [System.Environment]::MachineName)
+    $host.UI.RawUi.WindowTitle = ("{0}@{1}" -f $Env:USERNAME, $Env:COMPUTERNAME)
+    
     Write-Host($pwd) -nonewline
     $Global:GitStatus = Get-GitStatus
     Write-GitStatus $GitStatus
+    
     return "> "
 }
 
