@@ -36,34 +36,5 @@ function TabExpansion($line, $lastWord)
     }
 }
 
-function Print-EnvironmentPath
-{
-    param
-    (
-        [switch] $machine,
-        [switch] $process
-    )
-
-    if($process)
-    {
-        Write-Host ""
-        Write-Host "ENVIRONMENT :: PATH :: PROCESS"
-        [System.Environment]::GetEnvironmentVariable("Path", "Process").Split(";")
-        return
-    }
-
-    if($machine)
-    {
-        Write-Host "ENVIRONMENT :: PATH :: MACHINE"
-        [System.Environment]::GetEnvironmentVariable("Path", "Machine").Split(";")
-        return
-    }
-    
-    Write-Host ""
-    Write-Host "ENVIRONMENT :: PATH :: USER"
-    (Get-ChildItem ENV:PATH).Value.Split(";")
-}
-
-Set-Alias pp Print-EnvironmentPath
 Enable-GitColors
 Clear-Host
