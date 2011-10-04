@@ -11,7 +11,7 @@ Invoke-BatchFile $vcvars $vcargs
 # Set up a simple prompt, adding the git prompt parts inside git repos
 function prompt 
 {
-    $host.UI.RawUi.WindowTitle = ("{0}@{1}" -f $Env:USERNAME, $Env:COMPUTERNAME)
+    $host.UI.RawUi.WindowTitle = ("{0}@{1}" -f $ENV:USERNAME, $ENV:COMPUTERNAME)
     
     Write-Host($pwd) -nonewline
     $Global:GitStatus = Get-GitStatus
@@ -20,7 +20,7 @@ function prompt
     return "> "
 }
 
-if(-not (Test-Path Function:\DefaultTabExpansion)) 
+if(-not(Test-Path Function:\DefaultTabExpansion)) 
 {
     Rename-Item Function:\TabExpansion DefaultTabExpansion
 }
