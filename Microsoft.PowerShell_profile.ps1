@@ -5,7 +5,7 @@ Import-Module PowerTab -ArgumentList "$ENV:APPDATA\powertab\powertabconfig.xml"
 Import-Module Pscx
 
 $vcargs = ?: {$Pscx:Is64BitProcess} {'amd64'} {'x86'}
-$vcvars = "${env:VS100COMNTOOLS}..\..\VC\vcvarsall.bat"
+$vcvars = "${ENV:VS100COMNTOOLS}..\..\VC\vcvarsall.bat"
 Invoke-BatchFile $vcvars $vcargs
 
 # Set up a simple prompt, adding the git prompt parts inside git repos
