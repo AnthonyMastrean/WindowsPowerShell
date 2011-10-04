@@ -3,6 +3,7 @@ Import-Module posh-flow
 Import-Module posh-git
 Import-Module PowerTab -ArgumentList "$ENV:APPDATA\powertab\powertabconfig.xml"
 Import-Module Pscx
+Import-Module PsUrl
 
 $vcargs = ?: {$Pscx:Is64BitProcess} {'amd64'} {'x86'}
 $vcvars = "${ENV:VS100COMNTOOLS}..\..\VC\vcvarsall.bat"
