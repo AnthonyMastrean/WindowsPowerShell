@@ -1,7 +1,7 @@
 Import-Module Goto
 Import-Module posh-flow
 Import-Module posh-git
-Import-Module PowerTab -ArgumentList "$env:appdata\powertab\powertabconfig.xml"
+Import-Module PowerTab -ArgumentList "$ENV:APPDATA\powertab\powertabconfig.xml"
 Import-Module Pscx
 
 $vcargs = ?: {$Pscx:Is64BitProcess} {'amd64'} {'x86'}
