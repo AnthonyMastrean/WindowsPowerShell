@@ -1,4 +1,5 @@
 Import-Module Goto
+Import-Module Pester
 Import-Module posh-flow
 Import-Module posh-git
 Import-Module PowerTab -ArgumentList "$ENV:APPDATA\powertab\powertabconfig.xml"
