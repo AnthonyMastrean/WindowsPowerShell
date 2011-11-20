@@ -1,3 +1,5 @@
+param([switch]$debug)
+
 Import-Module PowerTab -ArgumentList "$ENV:APPDATA\powertab\powertabconfig.xml"
 Import-Module Pscx
 Import-Module posh-git
@@ -37,4 +39,7 @@ function TabExpansion($line, $lastWord)
 }
 
 Enable-GitColors
-Clear-Host
+
+if(!$debug) {
+    Clear-Host
+}
