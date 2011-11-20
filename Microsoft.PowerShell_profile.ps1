@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-Import-Module Goto
-Import-Module Pester
-Import-Module posh-flow
-Import-Module posh-git
-=======
->>>>>>> 82690eac711701f54caf36cfb0b4225fb3d6ea12
 Import-Module PowerTab -ArgumentList "$ENV:APPDATA\powertab\powertabconfig.xml"
 Import-Module Pscx
 Import-Module posh-git
