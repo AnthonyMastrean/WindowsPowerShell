@@ -1,9 +1,15 @@
+<<<<<<< HEAD
 Import-Module Goto
 Import-Module Pester
 Import-Module posh-flow
 Import-Module posh-git
+=======
+>>>>>>> 82690eac711701f54caf36cfb0b4225fb3d6ea12
 Import-Module PowerTab -ArgumentList "$ENV:APPDATA\powertab\powertabconfig.xml"
 Import-Module Pscx
+Import-Module posh-git
+Import-Module posh-hg
+Import-Module posh-flow
 
 $vcargs = ?: {$Pscx:Is64BitProcess} {'amd64'} {'x86'}
 $vcvars = "${ENV:VS100COMNTOOLS}..\..\VC\vcvarsall.bat"
