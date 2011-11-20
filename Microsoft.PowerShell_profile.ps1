@@ -6,6 +6,7 @@ Import-Module posh-git
 Import-Module posh-hg
 Import-Module posh-flow
 
+# Include the Visual Studio tools
 $vcargs = ?: {$Pscx:Is64BitProcess} {'amd64'} {'x86'}
 $vcvars = "${ENV:VS100COMNTOOLS}..\..\VC\vcvarsall.bat"
 Invoke-BatchFile $vcvars $vcargs
@@ -22,12 +23,13 @@ function prompt
     return "> "
 }
 
+# Setup PowerTab
 if(-not(Test-Path Function:\DefaultTabExpansion)) 
 {
     Rename-Item Function:\TabExpansion DefaultTabExpansion
 }
 
-# Set up tab expansion and include git expansion
+# Setup tab expansion and include git expansion
 function TabExpansion($line, $lastWord) 
 {
     $lastBlock = [regex]::Split($line, '[|;]')[-1]
@@ -40,6 +42,4 @@ function TabExpansion($line, $lastWord)
 
 Enable-GitColors
 
-if(!$debug) {
-    Clear-Host
-}
+if(!$debug) { Clear-Host }
