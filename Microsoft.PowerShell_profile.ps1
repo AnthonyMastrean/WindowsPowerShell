@@ -7,8 +7,11 @@ Import-Module posh-hg
 Import-Module posh-flow
 
 # Setup PSDrive for Scripts directory
-$scripts = Join-Path (Split-Path $PROFILE) 'Scripts'
-New-PSDrive -name Scripts -PSProvider FileSystem -Root $scripts
+if(-not(Test-Path Scripts:))
+{
+    $scripts = Join-Path (Split-Path $PROFILE) 'Scripts'
+    New-PSDrive -name Scripts -PSProvider FileSystem -Root $scripts
+}
 
 # Include the Visual Studio tools
 $vcargs = ?: {$Pscx:Is64BitProcess} {'amd64'} {'x86'}
