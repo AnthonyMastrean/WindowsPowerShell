@@ -49,4 +49,4 @@ function TabExpansion($line, $lastWord)
 
 Enable-GitColors
 
-if(!$debug) { Clear-Host }
+if(!$debug){Clear-Host}
