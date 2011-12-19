@@ -3,8 +3,6 @@ param([switch]$debug)
 Import-Module PowerTab -ArgumentList "$ENV:APPDATA\powertab\powertabconfig.xml"
 Import-Module Pscx
 Import-Module posh-git
-Import-Module posh-hg
-Import-Module posh-flow
 
 # Setup PSDrive for Scripts directory
 if(-not(Test-Path Scripts:))
