@@ -9,7 +9,7 @@ Import-Module posh-git
 if(-not(Test-Path Scripts:))
 {
     $scripts = Join-Path (Split-Path $PROFILE) 'Scripts'
-    New-PSDrive -name Scripts -PSProvider FileSystem -Root $scripts
+    New-PSDrive -name Scripts -PSProvider FileSystem -Root $scripts | Out-Null
 }
 
 # Include the Visual Studio tools
@@ -47,5 +47,3 @@ function TabExpansion($line, $lastWord)
 }
 
 Enable-GitColors
-
-if(!$debug){Clear-Host}
