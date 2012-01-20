@@ -53,7 +53,6 @@ function TabExpansion($line, $lastWord)
     }
 }
 
-
 # ==================================================
 # Configure persistent history
 # ==================================================
