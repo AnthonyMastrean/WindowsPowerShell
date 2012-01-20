@@ -46,15 +46,18 @@ function TabExpansion($line, $lastWord)
     }
 }
 
+
+# ==================================================
+# Configure persistent history
+# ==================================================
 $history = Join-Path (Split-Path $PROFILE) 'history.csv'
 
-# Register history exporting on exit
 Register-EngineEvent -SourceIdentifier powershell.exiting -SupportEvent -Action {
     Get-History -Count 10Kb | Export-Csv $history }
 
-if(Test-Path $history)
-{
+if(Test-Path $history) {
     Import-Csv $history | Add-History
 }
+# ==================================================
 
 Enable-GitColors
