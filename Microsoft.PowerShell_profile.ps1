@@ -15,7 +15,7 @@ if(-not(Test-Path Scripts:)) {
 # Include all functions
 # ==================================================
 $functions = Join-Path (Split-Path $PROFILE) 'Functions'
-Resolve-Path $funtions\*.ps1 | %{ 
+Resolve-Path $functions\*.ps1 | %{ 
     . $_.ProviderPath
 }
 
