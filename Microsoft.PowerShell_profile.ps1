@@ -19,7 +19,7 @@ $vcvars = "${ENV:VS100COMNTOOLS}..\..\VC\vcvarsall.bat"
 Invoke-BatchFile $vcvars $vcargs
 
 # ==================================================
-# Set up a simple prompt, adding the git prompt parts inside git repos
+# Set the prompt title and git status
 # ==================================================
 function prompt 
 {
