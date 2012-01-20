@@ -12,6 +12,13 @@ if(-not(Test-Path Scripts:)) {
 }
 
 # ==================================================
+# Include all functions
+# ==================================================
+Resolve-Path Functions\*.ps1 | %{ 
+    . $_.ProviderPath
+}
+
+# ==================================================
 # Include the Visual Studio tools
 # ==================================================
 $vcargs = ?: {$Pscx:Is64BitProcess} {'amd64'} {'x86'}
@@ -21,8 +28,7 @@ Invoke-BatchFile $vcvars $vcargs
 # ==================================================
 # Set the prompt title and git status
 # ==================================================
-function prompt 
-{
+function prompt {
     $host.UI.RawUi.WindowTitle = ("{0}@{1}" -f $ENV:USERNAME, $ENV:COMPUTERNAME)
     
     Write-Host($pwd) -nonewline
@@ -35,16 +41,14 @@ function prompt
 # ==================================================
 # Setup PowerTab
 # ==================================================
-if(-not(Test-Path Function:\DefaultTabExpansion)) 
-{
+if(-not(Test-Path Function:\DefaultTabExpansion)) {
     Rename-Item Function:\TabExpansion DefaultTabExpansion
 }
 
 # ==================================================
 # Setup tab expansion and include git expansion
 # ==================================================
-function TabExpansion($line, $lastWord) 
-{
+function TabExpansion($line, $lastWord) {
     $lastBlock = [regex]::Split($line, '[|;]')[-1]
     switch -regex ($lastBlock) 
     {
@@ -56,10 +60,11 @@ function TabExpansion($line, $lastWord)
 # ==================================================
 # Configure persistent history
 # ==================================================
+$global:MaxHistoryCount = 10Kb
 $history = Join-Path (Split-Path $PROFILE) 'history.csv'
 
 Register-EngineEvent -SourceIdentifier powershell.exiting -SupportEvent -Action {
-    Get-History -Count 10Kb | Export-Csv $history }
+    Get-History -Count $global:MaxHistoryCount | Export-Csv $history }
 
 if(Test-Path $history) {
     Import-Csv $history | Add-History
