@@ -1,5 +1,3 @@
-param([switch]$debug)
-
 Import-Module Pester
 Import-Module PowerTab -ArgumentList "$ENV:APPDATA\powertab\powertabconfig.xml"
 Import-Module Pscx
