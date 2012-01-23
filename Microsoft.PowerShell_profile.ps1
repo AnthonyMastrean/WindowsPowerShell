@@ -58,17 +58,4 @@ function TabExpansion($line, $lastWord) {
     }
 }
 
-# ==================================================
-# Configure persistent history
-# ==================================================
-$global:MaxHistoryCount = 10Kb
-$history = Join-Path (Split-Path $PROFILE) 'history.csv'
-
-Register-EngineEvent -SourceIdentifier powershell.exiting -SupportEvent -Action {
-    Get-History -Count $global:MaxHistoryCount | Export-Csv $history }
-
-if(Test-Path $history) {
-    Import-Csv $history | Add-History
-}
-
 Enable-GitColors
