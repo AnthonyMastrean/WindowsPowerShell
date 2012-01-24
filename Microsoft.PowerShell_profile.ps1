@@ -3,6 +3,8 @@ Import-Module PowerTab -ArgumentList "$ENV:APPDATA\powertab\powertabconfig.xml"
 Import-Module Pscx
 Import-Module posh-git
 
+$bitness = if([IntPtr]::size -eq 8) { '64' } else { '32' }
+
 # ==================================================
 # Setup PSDrive for Scripts directory
 # ==================================================
@@ -30,9 +32,14 @@ Invoke-BatchFile $vcvars $vcargs
 # Set the prompt title and git status
 # ==================================================
 function prompt {
-    $host.UI.RawUi.WindowTitle = ("{0}@{1}" -f $ENV:USERNAME, $ENV:COMPUTERNAME)
+    $host.UI.RawUi.WindowTitle = ("{0}@{1} [.NET {2}.{3}] (x{4})" -f `
+        $ENV:USERNAME, `
+        $ENV:COMPUTERNAME, `
+        $PSVersionTable.CLRVersion.Major, `
+        $PSVersionTable.CLRVersion.Minor, `
+        $bitness)
     
-    Write-Host($pwd) -nonewline
+    Write-Host $pwd  -NoNewline
     $Global:GitStatus = Get-GitStatus
     Write-GitStatus $GitStatus
     
