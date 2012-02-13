@@ -1,7 +1,7 @@
-Import-Module Pester
 Import-Module PowerTab -ArgumentList "$ENV:APPDATA\powertab\powertabconfig.xml"
 Import-Module Pscx
-Import-Module posh-git
+
+Get-Module -ListAvailable | ?{ $_.ModuleType -eq 'Script' } | Import-Module
 
 $bitness = if([IntPtr]::size -eq 8) { 'amd64' } else { 'x86' }
 
