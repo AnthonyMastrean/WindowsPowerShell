@@ -37,9 +37,14 @@ function prompt {
         $PSVersionTable.CLRVersion.Minor, `
         $(Get-Bitness))
     
-    Write-Host $pwd  -NoNewline
-    $Global:GitStatus = Get-GitStatus
-    Write-GitStatus $GitStatus
+    $realLASTEXITCODE = $LASTEXITCODE
+    
+    # posh-git
+    $Host.UI.RawUI.ForegroundColor = $GitPromptSettings.DefaultForegroundColor
+    Write-Host $pwd -nonewline
+    Write-VcsStatus
+    
+    $global:LASTEXITCODE = $realLASTEXITCODE
     
     return '> '
 }
