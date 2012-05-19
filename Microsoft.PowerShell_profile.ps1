@@ -25,7 +25,7 @@ function prompt {
         $ENV:COMPUTERNAME, `
         $PSVersionTable.CLRVersion.Major, `
         $PSVersionTable.CLRVersion.Minor, `
-        $(Get-Bitness))
+        $vcargs)
     
     $realLASTEXITCODE = $LASTEXITCODE
     
