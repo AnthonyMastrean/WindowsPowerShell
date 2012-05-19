@@ -3,8 +3,6 @@ Import-Module Pscx
 
 Get-Module -ListAvailable | ?{ $_.ModuleType -eq 'Script' } | Import-Module
 
-$bitness = if([IntPtr]::size -eq 8) { 'amd64' } else { 'x86' }
-
 # ==================================================
 # Setup PSDrive for Scripts directory
 # ==================================================
@@ -37,7 +35,7 @@ function prompt {
         $ENV:COMPUTERNAME, `
         $PSVersionTable.CLRVersion.Major, `
         $PSVersionTable.CLRVersion.Minor, `
-        $bitness)
+        $(Get-Bitness))
     
     Write-Host $pwd  -NoNewline
     $Global:GitStatus = Get-GitStatus
