@@ -3,9 +3,9 @@ Import-Module Pscx
 
 Get-Module -ListAvailable | ?{ $_.ModuleType -eq 'Script' } | Import-Module
 
-$profilePath = Split-Path $PROFILE
-$scripts     = Join-Path  $profilePath 'Scripts'
-$functions   = Join-Path  $profilePath 'Functions'
+$here      = Split-Path $PROFILE
+$scripts   = Join-Path  $here 'Scripts'
+$functions = Join-Path  $here 'Functions'
 
 if(-not(Test-Path Scripts:)) {
     New-PSDrive -name Scripts -PSProvider FileSystem -Root $scripts | Out-Null
