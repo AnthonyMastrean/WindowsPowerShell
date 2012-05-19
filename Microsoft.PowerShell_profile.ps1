@@ -8,7 +8,7 @@ $scripts   = Join-Path  $here 'Scripts'
 $functions = Join-Path  $here 'Functions'
 
 if(-not(Test-Path Scripts:)) {
-    New-PSDrive -name Scripts -PSProvider FileSystem -Root $scripts | Out-Null
+    New-PSDrive -Name Scripts -PSProvider FileSystem -Root $scripts | Out-Null
 }
 
 Resolve-Path $functions\*.ps1 | %{ . $_.ProviderPath }
