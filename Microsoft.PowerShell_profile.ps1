@@ -3,17 +3,15 @@ Import-Module Pscx
 
 Get-Module -ListAvailable | ?{ $_.ModuleType -eq 'Script' } | Import-Module
 
-# Setup PSDrive for Scripts directory
+$profilePath = Split-Path $PROFILE
+$scripts     = Join-Path  $profilePath 'Scripts'
+$functions   = Join-Path  $profilePath 'Functions'
+
 if(-not(Test-Path Scripts:)) {
-    $scripts = Join-Path (Split-Path $PROFILE) 'Scripts'
     New-PSDrive -name Scripts -PSProvider FileSystem -Root $scripts | Out-Null
 }
 
-# Include all functions
-$functions = Join-Path (Split-Path $PROFILE) 'Functions'
-Resolve-Path $functions\*.ps1 | %{ 
-    . $_.ProviderPath
-}
+Resolve-Path $functions\*.ps1 | %{ . $_.ProviderPath }
 
 # Include the Visual Studio tools
 $vcargs = ?: {$Pscx:Is64BitProcess} {'amd64'} {'x86'}
