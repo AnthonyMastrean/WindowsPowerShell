@@ -13,12 +13,6 @@ if(-not(Test-Path Scripts:)) {
 
 Resolve-Path $functions\*.ps1 | %{ . $_.ProviderPath }
 
-# Include the Visual Studio tools
-$vcargs = ?: {$Pscx:Is64BitProcess} {'amd64'} {'x86'}
-$vcvars = "$ENV:VS100COMNTOOLS\..\..\VC\vcvarsall.bat"
-Invoke-BatchFile $vcvars $vcargs
-
-# Set the prompt title and git status
 function prompt {
     $host.UI.RawUi.WindowTitle = ('{0}@{1} [.NET {2}.{3}] ({4})' -f `
         $ENV:USERNAME, `
