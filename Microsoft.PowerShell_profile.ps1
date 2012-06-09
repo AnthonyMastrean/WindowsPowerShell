@@ -3,15 +3,13 @@ Import-Module Pscx
 
 Get-Module -ListAvailable | ?{ $_.ModuleType -eq 'Script' } | Import-Module
 
-$here      = Split-Path $PROFILE
-$scripts   = Join-Path  $here 'Scripts'
-$functions = Join-Path  $here 'Functions'
+$here = Split-Path $PROFILE
 
 if(-not(Test-Path Scripts:)) {
-    New-PSDrive -Name Scripts -PSProvider FileSystem -Root $scripts | Out-Null
+    New-PSDrive -name Scripts -psProvider FileSystem -root $here\Scripts | Out-Null
 }
 
-Resolve-Path $functions\*.ps1 | %{ . $_.ProviderPath }
+Get-ChildItem $here\Functions -include '*.ps1' -recurse | %{ . $_.FullName }
 
 function prompt {
     $host.UI.RawUi.WindowTitle = ('{5}{0}@{1} [.NET {2}.{3}] ({4})' -f `
