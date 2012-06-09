@@ -17,7 +17,7 @@ function prompt {
         $ENV:COMPUTERNAME, `
         $PSVersionTable.CLRVersion.Major, `
         $PSVersionTable.CLRVersion.Minor, `
-        $vcargs,
+        $(if([IntPtr]::Size -eq 8){'amd64'} else{'x86'}),
         $(if($host.UI.RawUI.WindowTitle.StartsWith('Administrator: ')){'Administrator: '})
     )
     
