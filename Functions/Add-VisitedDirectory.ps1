@@ -5,8 +5,6 @@ $store = Join-Path $here '.visited'
 [System.Reflection.Assembly]::LoadFrom("$esent\Esent.Interop.dll")     | Out-Null
 [System.Reflection.Assembly]::LoadFrom("$esent\Esent.Collections.dll") | Out-Null
 
-$map = New-Object "Microsoft.Isam.Esent.Collections.Generic.PersistentDictionary[string,int]" $store
-
 function Add-VisitedDirectory {
     param(
         [ValidateNotNullOrEmpty()]
@@ -15,6 +13,7 @@ function Add-VisitedDirectory {
     )
 
 	$path = Resolve-Path $path
+	$map  = Get-VisitedDirectories
 
     if(-not($map.ContainsKey($path))) {
         $map.Add($path, 0)
@@ -31,6 +30,7 @@ function Remove-VisitedDirectory {
     )
 
 	$path = Resolve-Path $path
+    $map  = Get-VisitedDirectories
 
     if($map.ContainsKey($path)) {
         $map.Remove($path)
@@ -38,6 +38,7 @@ function Remove-VisitedDirectory {
 }
 
 function Limit-VisitedDirectories {
+    $map = Get-VisitedDirectories
     $map.Keys | %{
         $map[$_] = $map[$_] / 2
         
@@ -45,4 +46,8 @@ function Limit-VisitedDirectories {
             $map.Remove($_)
         }
     }
+}
+
+function Get-VisitedDirectories {
+    New-Object "Microsoft.Isam.Esent.Collections.Generic.PersistentDictionary[string,int]" $store
 }
