@@ -20,6 +20,8 @@ function Add-VisitedDirectory {
     }
     
     $map[$path] += 1
+    
+    $map.Dispose()
 }
 
 function Remove-VisitedDirectory {
@@ -35,6 +37,8 @@ function Remove-VisitedDirectory {
     if($map.ContainsKey($path)) {
         $map.Remove($path)
     }
+    
+    $map.Dispose()
 }
 
 function Limit-VisitedDirectories {
@@ -46,6 +50,8 @@ function Limit-VisitedDirectories {
             $map.Remove($_)
         }
     }
+    
+    $map.Dispose()
 }
 
 function Get-VisitedDirectories {
