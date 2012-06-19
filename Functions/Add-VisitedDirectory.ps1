@@ -1,6 +1,6 @@
 $here  = Split-Path $MyInvocation.MyCommand.Path
 $esent = Join-Path $here 'ManagedEsent.1.6\lib\net20'
-$store = Join-Path $here 'VisitedDirectories'
+$store = Join-Path $here '.visited'
 
 [System.Reflection.Assembly]::LoadFrom("$esent\Esent.Interop.dll")     | Out-Null
 [System.Reflection.Assembly]::LoadFrom("$esent\Esent.Collections.dll") | Out-Null
