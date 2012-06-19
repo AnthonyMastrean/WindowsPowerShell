@@ -33,4 +33,6 @@ function prompt {
     return '> '
 }
 
+Set-Alias new New-Object
+
 Enable-GitColors
