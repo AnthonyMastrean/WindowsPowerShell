@@ -5,6 +5,25 @@ $store = Join-Path $here '.visited'
 [System.Reflection.Assembly]::LoadFrom("$esent\Esent.Interop.dll")     | Out-Null
 [System.Reflection.Assembly]::LoadFrom("$esent\Esent.Collections.dll") | Out-Null
 
+$script:LastVisitedDirectory = $null
+
+function Set-LastVisitedDirectory {
+    param(
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({ Test-Path $_ -pathType Container })]
+        [string] $path = $pwd
+    )
+    
+    $path = Resolve-Path $path
+    
+    if($path -eq $script:LastVisitedDirectory) {
+        return
+    }
+    
+    Add-VisitedDirectory $path
+    $script:LastVisitedDirectory = $path
+}
+
 function Add-VisitedDirectory {
     param(
         [ValidateNotNullOrEmpty()]
@@ -54,6 +73,8 @@ function Limit-VisitedDirectories {
     $map.Dispose()
 }
 
+# TODO: Consider caching this in a way that's resistant to reloading 
+# the PowerShell profile in the same console
 function Get-VisitedDirectories {
     New-Object "Microsoft.Isam.Esent.Collections.Generic.PersistentDictionary[string,int]" $store
 }
