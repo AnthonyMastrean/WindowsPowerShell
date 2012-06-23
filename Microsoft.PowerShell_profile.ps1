@@ -12,7 +12,7 @@ if(-not(Test-Path Scripts:)) {
 Get-ChildItem $here\Functions -include '*.ps1' -recurse | %{ . $_.FullName }
 
 function prompt {
-	Set-LastVisitedDirectory
+    Set-LastVisitedDirectory
 
     $host.UI.RawUi.WindowTitle = ('{5}{0}@{1} [.NET {2}.{3}] ({4})' -f `
         $ENV:USERNAME, `
