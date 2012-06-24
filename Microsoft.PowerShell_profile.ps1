@@ -8,7 +8,7 @@ Get-Module -ListAvailable | ?{ $_.ModuleType -eq 'Script' } | Import-Module
 Get-ChildItem $here\Functions -include *.ps1 -recurse | %{ . $_.FullName }
 
 function prompt {
-    Set-LastVisitedDirectory
+    Set-VisitedDirectory
 
     $host.UI.RawUi.WindowTitle = ('{5}{0}@{1} [.NET {2}.{3}] ({4})' -f `
         $ENV:USERNAME, `
