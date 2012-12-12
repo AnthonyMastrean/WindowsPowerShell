@@ -23,7 +23,7 @@ function prompt {
     
     # posh-git
     $Host.UI.RawUI.ForegroundColor = $GitPromptSettings.DefaultForegroundColor
-    Write-Host $pwd -nonewline
+    Write-Host $pwd -NoNewLine
     Write-VcsStatus
     
     $global:LASTEXITCODE = $realLASTEXITCODE
