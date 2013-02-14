@@ -11,6 +11,6 @@ if(-not(Test-Path $TOOLS)) {
 	return
 }
 
-$vcargs = ?: {$Pscx:Is64BitProcess} {'amd64'} {'x86'}
+$vcargs = if($Pscx:Is64BitProcess) { 'amd64' } else { 'x86' }
 $vcvars = "$TOOLS\..\..\VC\vcvarsall.bat"
 Invoke-BatchFile $vcvars $vcargs
