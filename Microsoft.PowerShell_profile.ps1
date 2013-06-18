@@ -6,7 +6,6 @@ Import-Module posh-git
 Import-Module posh-hg
 Import-Module posh-tf
 Import-Module Pester
-Import-Module trace-location
 Import-Module remember
 
 Get-ChildItem $here\Functions -include *.ps1 -recurse | %{ . $_.FullName }
