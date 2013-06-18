@@ -3,13 +3,8 @@
 	Include the Visual Studio tools using the Pscx
 #>
 
-$tools = $ENV:VS110COMNTOOLS
-
-if(-not(Test-Path $tools)) {
-	Write-Error "Cannot find Visual Studio 2012 common tools"
-	return
-}
-
+$var    = @( 'ENV:VS110COMNTOOLS', 'ENV:VS100COMNTOOLS' ) | ?{ Test-Path $_ } | Select-Object -First 1
+$tools  = (Get-Item $var).Value
 $vcargs = if($Pscx:Is64BitProcess) { 'amd64' } else { 'x86' }
 $vcvars = "$tools\..\..\VC\vcvarsall.bat"
 
