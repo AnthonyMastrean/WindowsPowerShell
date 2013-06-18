@@ -1,41 +1,62 @@
-About PowerShell Profiles
-==========
-PowerShell can be a bit of a mystery when you get started. There are some fundamentals though that, once you get started, are easy to build on. One of these mysteries is the PowerShell profile. There are actually four [profiles](http://msdn.microsoft.com/en-us/library/bb613488.aspx)! But, the one I care about is the user profile that applies only to the Microsoft PowerShell shell. See if you have this profile already.
+# About PowerShell Profiles
+PowerShell can be a mystery when you first get started. There are some fundamentals though that are easy to build on. One of these fundamentals is the PowerShell profile. There are actually four [profiles][1], but we're concerned about the current user's Microsoft PowerShell shell profile.
 
-    PS> Test-Path $Profile
+Test if you have a profile script already (that's right, it's just a PowerShell script file). 
+
+    PS> Test-Path $PROFILE
     
-If you do, great! That's where we're going to do some work. If you don't, you can easily create it.
+If you don't have one yet, notepad can create it for you.
 
-    PS> New-Item -Path $profile -ItemType file -Force
-
-Go ahead and navigate to your profile directory (in Windows Explorer or from the shell, whichever you're more comfortable with). Open up the user profile, it should be named `Microsoft.PowerShell_profile.ps1`.
+    PS> notepad $PROFILE
     
-It's just a PowerShell script file that's executed every time you start the Microsoft PowerShell shell. Now, you're thinking "what can I do with this?". That's easy! Import [modules](http://msdn.microsoft.com/en-us/library/dd878324.aspx) or [scripts](http://technet.microsoft.com/en-us/library/ee176949.aspx), define functions, variables, or [aliases](http://technet.microsoft.com/en-us/library/ee176913.aspx), or change the [prompt](http://technet.microsoft.com/en-us/library/dd347633.aspx) (you can see examples of these in my profile).
+This script file is executed every time you start the Microsoft PowerShell shell. What can we do with this? How about: import [modules][2] or [scripts][3], define custom functions, variables, or [aliases][4], or change the [prompt][5]! You can see examples of all of these in my profile.
 
-Running Git on Windows
-==========
-There are many ways to run git on Windows. There are many shells to choose from, some GUI tools, but they all start with [msysgit](http://code.google.com/p/msysgit/). I install without any "Additional icons" or "Windows Explorer integration". This is because we're going to integrate git with our PowerShell console later. I select the option to run git from the Windows Command Prompt so that the git is added to my PATH automatically. And finally, for compatibility, I checkout Windows-style and commit Unix-style. This hasn't caused me any problems yet, and I believe is a configurable option (in case you work on a project that requires another option).
+# Running Git on Windows
+Many popular PowerShell modules and scripts are hosted on Github, so this is an important step. Let's get the git source control tool installed on our system, with custom git-status information showing up in our PowerShell prompt!
 
-Confirm that the installation was successful by opening a PowerShell console and running a command.
+1. Start by installing the Windows package manager, [Chocolatey][6].
+1. Install "git" using your new Chocolatey commands (`chocolatey install git` or `cinst git`).
+1. You should be able to type the `git` command in your console now.
+1. Later, you'll want to [setup your SSH keys][7] and git credentials.
+1. Now, install the posh-git PowerShell module via Chocolatey (`cinst posh-git`).
 
-    PS> git
+This package provides custom git-status information on your console's prompt (like what branch you're on, how many edits are pending, etc). You'll go from
 
-You should see the git usage printed. At this point, you'll want to setup your ssh key and git credentials. I recommend going immediately to this [official git page](http://help.github.com/win-set-up-git/) and following the instructions under Set Up SSH Keys and Set Up Your Info.
+    PS\my-git-repo> 
+    
+to 
 
-Cloning Modules
-==========
-Now that you're all setup, let's clone some PowerShell modules from github to your local machine. The one you really want is [posh-git](https://github.com/dahlbyk/posh-git). It's going to make your PowerShell prompt go from this `X:\SecretProject>` to this `X:\SecretProject [master +3 ~2 -1 !]>`.
+    PS\my-git-repo [master +0 ~1 -0]>
 
-If you're just setting up PowerShell, you may not have a `Modules` directory.
+# Cloning Modules
+Not all modules are packaged and published on Chocolatey. Often, you'll want to clone a module from a public or private source control host, like Github. If you're just getting started with PowerShell, you may not have a user `Modules` directory yet. That's where modules live, by default, so that you can import them without specifying a full file path (like `Import-Module posh-git`).
 
-    PS> $env:PSModulePath.Split(";") | Test-Path
+Of course there are many Module paths. You can create all of them at once with this command. Please pick apart the component parts to see what each portion of the command does!
 
-Create them.
+    PS> $ENV:PSMODULEPATH -Split ';' | New-Item -Type Directory -Force
 
-    PS> $env:PSModulePath.Split(";") | New-Item -ItemType directory -Force
+Browse to your user module directory from your current PowerShell session (explore the components of this statement, too).
 
-Then start a PowerShell session in the Modules directory in your user documents directory (the one next to your profile). Clone the posh-git repository.
+    PS> cd (Join-Path (Split-Path $PROFILE) 'Modules')
 
-    X:\Users\<username>\WindowsPowerShell\Modules> git clone https://github.com/dahlbyk/posh-git.git posh-git
+And use git to clone a module!
 
-Follow the instructions on their github project page under `Usage` to import their module into your shell and to get setup with the hot new prompt. Or follow the commands in my profile here, but it's not guaranteed to be up to date.
+    PS\profile\Modules> git clone git@github.com:someuser/coolpsmodule.git
+
+# Importing Modules
+Now that you have a module in your default user Module path, you can just add a line like this to your PowerShell profile.
+
+    Import-Module coolpsmodule
+    
+If you reload your profile (try running your profile script again... `. $PROFILE), the module will be loaded. You can see what functionality the module has provided you with a simple command.
+
+    PS> Get-Command -Module coolpsmodule
+
+
+ [1]: http://msdn.microsoft.com/en-us/library/bb613488.aspx
+ [2]: http://msdn.microsoft.com/en-us/library/dd878324.aspx
+ [3]: http://technet.microsoft.com/en-us/library/ee176949.aspx
+ [4]: http://technet.microsoft.com/en-us/library/ee176913.aspx
+ [5]: http://technet.microsoft.com/en-us/library/dd347633.aspx
+ [6]: http://chocolatey.org
+ [7]: http://help.github.com/win-set-up-git/
