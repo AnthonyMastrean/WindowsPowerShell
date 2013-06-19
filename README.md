@@ -5,8 +5,9 @@ Test if you have a profile script already (that's right, it's just a PowerShell 
 
     PS> Test-Path $PROFILE
     
-If you don't have one yet, notepad can create it for you.
+If you don't have one yet, create it (and the whole directory structure) and open it in notepad
 
+    PS> New-Item $PROFILE -Type File -Force
     PS> notepad $PROFILE
     
 This script file is executed every time you start the Microsoft PowerShell shell. What can we do with this? How about: import [modules][2] or [scripts][3], define custom functions, variables, or [aliases][4], or change the [prompt][5]! You can see examples of all of these in my profile.
