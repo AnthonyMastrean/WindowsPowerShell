@@ -41,7 +41,7 @@ Browse to your user module directory from your current PowerShell session (explo
 
 And use git to clone a module!
 
-    PS\profile\Modules> git clone git@github.com:someuser/coolpsmodule.git
+    PS\Modules> git clone git@github.com:someuser/coolpsmodule.git
 
 # Importing Modules
 Now that you have a module in your default user Module path, you can just add a line like this to your PowerShell profile.
