@@ -37,7 +37,7 @@ Of course there are many Module paths. You can create all of them at once with t
 
 Browse to your user module directory from your current PowerShell session (explore the components of this statement, too).
 
-    PS> cd (Join-Path (Split-Path $PROFILE) 'Modules')
+    PS> Set-Location (Join-Path (Split-Path $PROFILE) 'Modules')
 
 And use git to clone a module!
 
@@ -48,7 +48,7 @@ Now that you have a module in your default user Module path, you can just add a 
 
     Import-Module coolpsmodule
     
-If you reload your profile (try running your profile script again... `. $PROFILE), the module will be loaded. You can see what functionality the module has provided you with a simple command.
+If you reload your profile (try running your profile script... `. $PROFILE`), the module will be loaded. You can see what functionality the module has provided you with a simple command.
 
     PS> Get-Command -Module coolpsmodule
 
