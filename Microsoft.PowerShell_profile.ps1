@@ -12,7 +12,6 @@ Get-ChildItem $here\Functions -include *.ps1 -recurse | %{ . $_.FullName }
 
 function prompt {
   Set-VisitedDirectory
-  Set-SessionTitle  
   Print-GitStatus
 }
 
