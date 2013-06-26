@@ -5,8 +5,9 @@ Test if you have a profile script already (that's right, it's just a PowerShell 
 
     PS> Test-Path $PROFILE
     
-If you don't have one yet, notepad can create it for you.
+If you don't have one yet, create it (and the whole directory structure) and open it in notepad
 
+    PS> New-Item $PROFILE -Type File -Force
     PS> notepad $PROFILE
     
 This script file is executed every time you start the Microsoft PowerShell shell. What can we do with this? How about: import [modules][2] or [scripts][3], define custom functions, variables, or [aliases][4], or change the [prompt][5]! You can see examples of all of these in my profile.
@@ -37,18 +38,18 @@ Of course there are many Module paths. You can create all of them at once with t
 
 Browse to your user module directory from your current PowerShell session (explore the components of this statement, too).
 
-    PS> cd (Join-Path (Split-Path $PROFILE) 'Modules')
+    PS> Set-Location (Join-Path (Split-Path $PROFILE) 'Modules')
 
 And use git to clone a module!
 
-    PS\profile\Modules> git clone git@github.com:someuser/coolpsmodule.git
+    PS\Modules> git clone git@github.com:someuser/coolpsmodule.git
 
 # Importing Modules
 Now that you have a module in your default user Module path, you can just add a line like this to your PowerShell profile.
 
     Import-Module coolpsmodule
     
-If you reload your profile (try running your profile script again... `. $PROFILE), the module will be loaded. You can see what functionality the module has provided you with a simple command.
+If you reload your profile (try running your profile script... `. $PROFILE`), the module will be loaded. You can see what functionality the module has provided you with a simple command.
 
     PS> Get-Command -Module coolpsmodule
 
