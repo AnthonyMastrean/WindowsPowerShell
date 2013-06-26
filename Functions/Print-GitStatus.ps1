@@ -6,6 +6,4 @@ function Print-GitStatus {
   Write-VcsStatus
   
   $global:LASTEXITCODE = $realLASTEXITCODE
-  
-  '> '
 }

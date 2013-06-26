@@ -14,6 +14,7 @@ function prompt {
   Set-VisitedDirectory
   Set-SessionTitle  
   Print-GitStatus
+  '> '
 }
 
 Set-Alias new New-Object
