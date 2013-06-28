@@ -1,14 +1,9 @@
 $here = Split-Path $PROFILE
 
-Import-Module PowerTab -ArgumentList "$ENV:APPDATA\powertab\powertabconfig.xml"
-Import-Module Pscx
-Import-Module posh-git
-Import-Module posh-hg
-Import-Module posh-tf
-Import-Module Pester
-Import-Module remember
-
+Get-ChildItem $here\Modules -include *.psm1 -recurse | Import-Module
 Get-ChildItem $here\Functions -include *.ps1 -recurse | %{ . $_.FullName }
+
+Set-VsVars
 
 function prompt {
   Set-VisitedDirectory
