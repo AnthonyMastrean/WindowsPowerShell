@@ -5,6 +5,8 @@ Get-ChildItem $here\Functions -include *.ps1 -recurse | %{ . $_.FullName }
 
 Set-VsVars
 
+$global:GitPromptSettings.EnableWindowTitle = $false
+
 function prompt {
   Set-VisitedDirectory
   Print-GitStatus
