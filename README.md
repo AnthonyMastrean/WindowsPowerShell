@@ -3,12 +3,12 @@ PowerShell can be a mystery when you first get started. There are some fundament
 
 Test if you have a profile script already (that's right, it's just a PowerShell script file). 
 
-    PS> Test-Path $PROFILE
+    PS> Test-Path $profile
     
 If you don't have one yet, create it (and the whole directory structure) and open it in notepad
 
-    PS> New-Item $PROFILE -Type File -Force
-    PS> notepad $PROFILE
+    PS> New-Item $profile -type File -force
+    PS> notepad $profile
     
 This script file is executed every time you start the Microsoft PowerShell shell. What can we do with this? How about: import [modules][2] or [scripts][3], define custom functions, variables, or [aliases][4], or change the [prompt][5]! You can see examples of all of these in my profile.
 
@@ -34,11 +34,12 @@ Not all modules are packaged and published on Chocolatey. Often, you'll want to 
 
 Of course there are many Module paths. You can create all of them at once with this command. Please pick apart the component parts to see what each portion of the command does!
 
-    PS> $ENV:PSMODULEPATH -Split ';' | New-Item -Type Directory -Force
+    PS> $ENV:PsModulePath -split ';' | New-Item -type Directory -force
 
 Browse to your user module directory from your current PowerShell session (explore the components of this statement, too).
 
-    PS> Set-Location (Join-Path (Split-Path $PROFILE) 'Modules')
+    PS> cd (Split-Path $profile)
+    PS> cd .\Modules
 
 And use git to clone a module!
 
@@ -51,7 +52,7 @@ Now that you have a module in your default user Module path, you can just add a 
     
 If you reload your profile (try running your profile script... `. $PROFILE`), the module will be loaded. You can see what functionality the module has provided you with a simple command.
 
-    PS> Get-Command -Module coolpsmodule
+    PS> gcm -module coolpsmodule
 
 
  [1]: http://msdn.microsoft.com/en-us/library/bb613488.aspx
