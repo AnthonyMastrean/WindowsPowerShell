@@ -19,7 +19,7 @@ Many popular PowerShell modules and scripts are hosted on Github, so this is an 
 1. Install "git" using your new Chocolatey commands (`chocolatey install git` or `cinst git`).
 1. You should be able to type the `git` command in your console now.
 1. Later, you'll want to [setup your SSH keys][7] and git credentials.
-1. Now, install the posh-git PowerShell module via Chocolatey (`cinst posh-git`).
+1. Now, install the posh-git PowerShell module via Chocolatey (`cinst poshgit`).
 
 This package provides custom git-status information on your console's prompt (like what branch you're on, how many edits are pending, etc). You'll go from
 
