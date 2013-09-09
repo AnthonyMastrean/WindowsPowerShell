@@ -9,6 +9,7 @@ $global:GitPromptSettings.EnableWindowTitle = $false
 
 function prompt {
   Set-VisitedDirectory
+  Write-Host $pwd -NoNewLine
   Print-GitStatus
   '> '
 }

@@ -1,9 +1,6 @@
 function Print-GitStatus {
-  $realLASTEXITCODE = $LASTEXITCODE
-  
+  $real_last_exit_code = $LASTEXITCODE
   $Host.UI.RawUI.ForegroundColor = $GitPromptSettings.DefaultForegroundColor
-  Write-Host $pwd -NoNewLine
   Write-VcsStatus
-  
-  $global:LASTEXITCODE = $realLASTEXITCODE
+  $global:LASTEXITCODE = $real_last_exit_code
 }
