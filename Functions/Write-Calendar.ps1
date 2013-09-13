@@ -19,11 +19,10 @@ function Write-Calendar {
     
   #>
   
-  $today = Get-Date  
+  $today = Get-Date
   $days = [datetime]::DaysInMonth($today.Year, $today.Month)
   
   $first = Get-Date -Year $today.Year -Month $today.Month -Day 1
-  $first_padding = "   " * $first.DayOfWeek
   
   $header = "{0} {1}" -f $today.ToString("MMMM"), $today.Year
   $header_padding = [math]::Floor((19 - $header.Length) / 2)
@@ -31,7 +30,7 @@ function Write-Calendar {
   Write-Host ""
   Write-Host (" " * $header_padding), $header
   Write-Host "Su Mo Tu We Th Fr Sa"
-  Write-Host ("   " * $first_padding) -NoNewLine
+  Write-Host ("   " * $first.DayOfWeek) -NoNewLine
   
   1..$days | %{ 
     $date = Get-Date -Year $today.Year -Month $today.Month -Day $_
