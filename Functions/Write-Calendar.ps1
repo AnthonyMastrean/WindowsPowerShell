@@ -29,9 +29,9 @@ function Write-Calendar {
   $header_padding = [math]::Floor((19 - $header.Length) / 2)
   
   Write-Host ""
-  Write-Host ("{0,$header_padding}" -f $header)
+  Write-Host (" " * $header_padding), $header
   Write-Host "Su Mo Tu We Th Fr Sa"
-  Write-Host ("{0},$first_padding" -f " ") -NoNewLine
+  Write-Host ("   " * $first_padding) -NoNewLine
   
   1..$days | %{ 
     $date = Get-Date -Year $today.Year -Month $today.Month -Day $_
@@ -44,6 +44,7 @@ function Write-Calendar {
     if($date.DayOfWeek -eq "Saturday") { Write-Host "" }
   }
   
+  Write-Host ""
   Write-Host ""
 }
  
