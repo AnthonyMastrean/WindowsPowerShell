@@ -1,5 +1,4 @@
 function Send-Sound { 
-
   param(
     [ValidateNotNullOrEmpty()]
     [string] $name = 'Beep'
