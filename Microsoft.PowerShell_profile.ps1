@@ -13,7 +13,6 @@ $host.UI.RawUi.WindowTitle = ('{5}{0}@{1}({4}) [PS {6}] [.NET {2}.{3}]' -f `
   $PSVersionTable.PSVersion
 )
 
-
 $global:GitPromptSettings.EnableWindowTitle = $false
 
 function prompt {
