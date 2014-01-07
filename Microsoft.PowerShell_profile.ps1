@@ -21,9 +21,7 @@ function prompt {
   Write-Host (Split-Path $pwd -Leaf) -NoNewLine
   
   $temp = $LASTEXITCODE
-  
-  Write-VcsStatus
-  
+  Write-VcsStatus  
   $global:LASTEXITCODE = $temp
 
   "> "
