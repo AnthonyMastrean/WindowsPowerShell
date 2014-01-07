@@ -17,9 +17,16 @@ $global:GitPromptSettings.EnableWindowTitle = $false
 
 function prompt {
   Set-VisitedDirectory
+  
   Write-Host (Split-Path $pwd -Leaf) -NoNewLine
-  Print-GitStatus
-  '> '
+  
+  $temp = $LASTEXITCODE
+  
+  Write-VcsStatus
+  
+  $global:LASTEXITCODE = $temp
+
+  "> "
 }
 
 Set-Alias new New-Object
