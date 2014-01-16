@@ -28,5 +28,6 @@ function prompt {
 }
 
 Set-Alias new New-Object
+Set-Alias which Get-Command
 
 Enable-GitColors
