@@ -1,7 +1,21 @@
 function Write-ItemSize {
+  <#
+    .SYNOPSIS
+    Pretty-print the size-on-disk of an item
+
+    .DESCRIPTION
+    Write the size of an item, on disk, to the console using
+    nice formatting and showing the common orders-of-magnitude:
+    KB, MB, and GB.
+
+    .PARAMETER path
+    The path to the item whose size to calculate
+  #>
+
   param(
     [Parameter(Mandatory = $true)]
-    [string]$path
+    [ValidateNotNullOrEmpty()]
+    [string] $path
   )
   
   $item = Get-Item $path
@@ -20,5 +34,3 @@ function Write-ItemSize {
   Write-Host (" {0,$($gb.Length + ($kb.Length - $gb.Length))} GB" -f $gb)
   Write-Host ""
 }
-
-Set-Alias size Write-ItemSize

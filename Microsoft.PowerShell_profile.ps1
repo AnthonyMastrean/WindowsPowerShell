@@ -3,31 +3,36 @@ $here = Split-Path $PROFILE
 Get-ChildItem $here\Modules\**\*.psm1 | Import-Module
 Get-ChildItem $here\Functions\*.ps1 | %{ . $_.FullName }
 
-$host.UI.RawUi.WindowTitle = ('{5}{0}@{1}({4}) [PS {6}] [.NET {2}.{3}]' -f `
-  $ENV:USERNAME, `
-  $ENV:COMPUTERNAME, `
-  $PSVersionTable.CLRVersion.Major, `
-  $PSVersionTable.CLRVersion.Minor, `
-  $(if([IntPtr]::Size -eq 8){'x64'}else{'x86'}),
-  $(if($host.UI.RawUI.WindowTitle.StartsWith('Administrator: ')){'Administrator: '}),
-  $PSVersionTable.PSVersion
-)
+function Test-Is64Bit { 
+  (Get-WmiObject Win32_Processor) -eq 64
+}
 
-$global:GitPromptSettings.EnableWindowTitle = $false
+function Get-HttpStatusCode($code) {
+  (Invoke-WebRequest "http://httpcode.info/$code" -UserAgent "curl").Content
+}
+
+function Test-IsWebsiteUp($url) {
+  (Invoke-WebRequest "http://isup.me/$url").Content.Contains("is up")
+}
+
+function Get-HomeRelativePath {
+  $input -replace [regex]::Escape((Resolve-Path ~)), "~"
+}
 
 function prompt {
-  Set-VisitedDirectory
-  
-  Write-Host (Split-Path $pwd -Leaf) -NoNewLine
-  
-  $temp = $LASTEXITCODE
-  Write-VcsStatus  
-  $global:LASTEXITCODE = $temp
-
-  "> "
+  "
+$ENV:USERNAME@$ENV:COMPUTERNAME $($PWD | Get-HomeRelativePath)
+> "
 }
 
 Set-Alias new New-Object
 Set-Alias which Get-Command
-
-Enable-GitColors
+Set-Alias bits Test-Is64Bit
+Set-Alias play Send-Sound
+Set-Alias first Select-FirstObject
+Set-Alias last Select-LastObject
+Set-Alias top Select-TopObject
+Set-Alias size Write-ItemSize
+Set-Alias cal Write-Calendar
+Set-Alias http Get-HttpStatusCode
+Set-Alias isup Test-IsWebsiteUp

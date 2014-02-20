@@ -1,15 +1,17 @@
-function Select-First { 
+function Select-FirstObject { 
   $input | Select-Object -First 1
 }
 
-function Select-Last {
+function Select-LastObject {
   $input | Select-Object -Last 1
 }
 
-function Select-Top([int]$n = 10) {
+function Select-TopObject {
+  param(
+    [Parameter(Mandatory = $false)]
+    [ValidateNotNullOrEmpty()]
+    [int] $n = 10
+  )
+
   $input | Select-Object -First $n
 }
-
-Set-Alias first Select-First
-Set-Alias last Select-Last
-Set-Alias top Select-Top

@@ -1,10 +1,11 @@
 function Write-Calendar {
   <#
     .SYNOPSIS
-    Write the current month's calendar to the console.
+    Write the current month to the console.
     
     .DESCRIPTION
-    Write the current month's calendar to the console.
+    Write the calendar for the current month to the console. The current day 
+    will be highlighted.
     
     .EXAMPLE
     PS> Get-Calendar
@@ -35,16 +36,26 @@ function Write-Calendar {
   1..$days | %{ 
     $date = Get-Date -Year $today.Year -Month $today.Month -Day $_
     
-    if($_ -lt 10) { $date_format = " {0} " } else { $date_format = "{0} " }
-    if($_ -eq $today.Day) { $date_foreground = "Green" } else { $date_foreground = $Host.UI.RawUI.ForegroundColor }
+    if($_ -lt 10) { 
+      $date_format = " {0} " 
+    } else { 
+      $date_format = "{0} " 
+    }
     
-    Write-Host ($date_format -f $_) -ForegroundColor $date_foreground -NoNewLine 
+    if($_ -eq $today.Day) { 
+      $foreground = "Green" 
+    } else { 
+      $foreground = $Host.UI.RawUI.ForegroundColor 
+    }
     
-    if($date.DayOfWeek -eq "Saturday") { Write-Host "" }
+    Write-Host ($date_format -f $_) -ForegroundColor $foreground -NoNewLine 
+    
+    if($date.DayOfWeek -eq "Saturday") { 
+      Write-Host "" 
+    }
   }
   
   Write-Host ""
   Write-Host ""
 }
  
-Set-Alias cal Write-Calendar
