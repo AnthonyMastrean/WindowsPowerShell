@@ -20,8 +20,10 @@ function Get-HomeRelativePath {
 }
 
 function prompt {
-  "
-$ENV:USERNAME@$ENV:COMPUTERNAME $($PWD | Get-HomeRelativePath)
+  Write-Host "$ENV:USERNAME@$ENV:COMPUTERNAME " -NoNewLine
+  Write-Host ($PWD | Get-HomeRelativePath) -NoNewLine
+  Write-VcsStatus
+  return "
 > "
 }
 
