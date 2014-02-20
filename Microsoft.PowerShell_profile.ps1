@@ -3,10 +3,6 @@ $here = Split-Path $PROFILE
 Get-ChildItem $here\Modules\**\*.psm1 | Import-Module
 Get-ChildItem $here\Functions\*.ps1 | %{ . $_.FullName }
 
-function Test-Is64Bit { 
-  (Get-WmiObject Win32_Processor) -eq 64
-}
-
 function Get-HttpStatusCode($code) {
   (Invoke-WebRequest "http://httpcode.info/$code" -UserAgent "curl").Content
 }
