@@ -15,14 +15,10 @@ function Test-IsWebsiteUp($url) {
   (Invoke-WebRequest "http://isup.me/$url").Content.Contains("is up")
 }
 
-function Get-HomeRelativePath {
-  $input -replace [regex]::Escape((Resolve-Path ~)), "~"
-}
-
 function prompt {
   Write-Host "
 $ENV:USERNAME@$ENV:COMPUTERNAME " -NoNewLine
-  Write-Host ($PWD | Get-HomeRelativePath) -NoNewLine
+  Write-Host ($PWD -replace [regex]::Escape((Resolve-Path ~)), "~") -NoNewLine
   Write-VcsStatus
   return "
 > "
