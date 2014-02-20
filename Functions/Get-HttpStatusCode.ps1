@@ -1,7 +1,11 @@
-function Get-HttpStatusCode($code) {
-  $web = New-Object System.Net.WebClient
-  $web.Headers.Add("User-Agent", "curl")
-  $web.DownloadString("http://httpcode.info/$code")
+function Get-HttpStatusCode {
+  param(
+    [Parameter(Mandatory = $true)]
+    [int] $code
+  )
+
+  $result = Invoke-WebRequest "http://httpcode.info/$code" -UserAgent "curl"
+  $result.Content
 }
 
 Set-Alias http Get-HttpStatusCode
