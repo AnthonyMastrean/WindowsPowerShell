@@ -1,7 +1,7 @@
 $here = Split-Path $PROFILE
 
-Get-ChildItem $here\Modules -include *.psm1 -recurse | Import-Module
-Get-ChildItem $here\Functions -include *.ps1 -recurse | %{ . $_.FullName }
+Get-ChildItem $here\Modules\**\*.psm1 | Import-Module
+Get-ChildItem $here\Functions\*.ps1 | %{ . $_.FullName }
 
 $host.UI.RawUi.WindowTitle = ('{5}{0}@{1}({4}) [PS {6}] [.NET {2}.{3}]' -f `
   $ENV:USERNAME, `
