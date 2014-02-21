@@ -13,8 +13,8 @@ function Test-IsWebsiteUp($url) {
 
 function prompt {
   Write-Host "
-$ENV:USERNAME@$ENV:COMPUTERNAME " -NoNewLine
-  Write-Host ($PWD -replace [regex]::Escape((Resolve-Path ~)), "~") -NoNewLine
+$ENV:USERNAME@$ENV:COMPUTERNAME " -ForegroundColor "DarkGreen" -NoNewLine
+  Write-Host ($PWD -replace [regex]::Escape((Resolve-Path ~)), "~") -ForegroundColor "DarkYellow" -NoNewLine
   Write-VcsStatus
   return "
 > "
