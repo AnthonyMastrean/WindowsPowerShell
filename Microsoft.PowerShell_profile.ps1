@@ -15,7 +15,7 @@ $global:GitPromptSettings.EnableWindowTitle = $false
 
 function prompt {
   Write-Host "`n$ENV:USERNAME@$ENV:COMPUTERNAME " -ForegroundColor "DarkGreen" -NoNewLine
-  Write-Host ($PWD -replace [regex]::Escape((Resolve-Path ~)), "~") -ForegroundColor "Magenta" -NoNewLine
+  Write-Host ($PWD -replace [regex]::Escape((Resolve-Path ~)), "~") -ForegroundColor "DarkYellow" -NoNewLine
   Write-VcsStatus
   return "`n> "
 }
