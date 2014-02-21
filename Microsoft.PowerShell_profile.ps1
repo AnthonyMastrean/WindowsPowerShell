@@ -11,6 +11,8 @@ function Test-IsWebsiteUp($url) {
   (Invoke-WebRequest "http://isup.me/$url").Content.Contains("is up")
 }
 
+$global:GitPromptSettings.EnableWindowTitle = $false
+
 function prompt {
   Write-Host "`n$ENV:USERNAME@$ENV:COMPUTERNAME " -ForegroundColor "DarkGreen" -NoNewLine
   Write-Host ($PWD -replace [regex]::Escape((Resolve-Path ~)), "~") -ForegroundColor "Magenta" -NoNewLine
