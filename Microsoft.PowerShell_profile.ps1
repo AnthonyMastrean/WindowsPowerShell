@@ -3,6 +3,8 @@ $here = Split-Path $PROFILE
 Get-Module -ListAvailable | ?{ $_.Path.Contains(($ENV:PSMODULEPATH -split ";")[0]) } | Import-Module
 Get-ChildItem $here\Cmdlets\*.ps1 | %{ . $_.FullName }
 
+$global:GitPromptSettings.EnableWindowTitle = $false
+
 function Get-HttpStatusCode($code) {
   (Invoke-WebRequest "http://httpcode.info/$code" -UserAgent "curl").Content
 }
@@ -11,7 +13,7 @@ function Test-IsWebsiteUp($url) {
   (Invoke-WebRequest "http://isup.me/$url").Content.Contains("is up")
 }
 
-$global:GitPromptSettings.EnableWindowTitle = $false
+Set-PSReadlineOption -ExtraPromptLineCount 2
 
 function prompt {
   Write-Host "`n$ENV:USERNAME@$ENV:COMPUTERNAME " -ForegroundColor "DarkGreen" -NoNewLine
