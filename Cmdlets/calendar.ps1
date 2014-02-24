@@ -1,11 +1,10 @@
 function Write-Calendar {
   <#
     .SYNOPSIS
-    Write the current month to the console.
+    Displays a calendar.
     
     .DESCRIPTION
-    Write the calendar for the current month to the console. The current day 
-    will be highlighted.
+    Displays a simple calendar with today's date highlighted.
     
     .EXAMPLE
     PS> Get-Calendar
@@ -19,38 +18,29 @@ function Write-Calendar {
     25 26 27 28 29 30 31
     
   #>
-  
+
   $today = Get-Date
+  $first = Get-Date -Year $today.Year -Month $today.Month -Day 1
   $days = [datetime]::DaysInMonth($today.Year, $today.Month)
   
-  $first = Get-Date -Year $today.Year -Month $today.Month -Day 1
-  
-  $header = "{0} {1}" -f $today.ToString("MMMM"), $today.Year
-  $header_padding = [math]::Floor((19 - $header.Length) / 2)
+  $header = "{0:MMMM yyyy}" -f $today
+  $header_padding = [math]::Floor((19 - $header.Length) / 2) + $header.Length
+  $first_padding = 3 * [int]$first.DayOfweek
   
   Write-Host ""
-  Write-Host (" " * $header_padding), $header
+  Write-Host ("{0,$header_padding}" -f $header)
   Write-Host "Su Mo Tu We Th Fr Sa"
-  Write-Host ("   " * $first.DayOfWeek) -NoNewLine
+  Write-Host ("{0,$first_padding}" -f "") -NoNewLine
   
   1..$days | %{ 
-    $date = Get-Date -Year $today.Year -Month $today.Month -Day $_
+    $current = Get-Date -Year $today.Year -Month $today.Month -Day $_
     
-    if($_ -lt 10) { 
-      $date_format = " {0} " 
-    } else { 
-      $date_format = "{0} " 
-    }
+    $date = @{$true=" $_ ";$false="$_ "}[$_ -lt 10]
+    $foreground = @{$true="Green";$false=$HOST.UI.RawUI.ForegroundColor}[$_ -eq $today.Day]
     
-    if($_ -eq $today.Day) { 
-      $foreground = "Green" 
-    } else { 
-      $foreground = $Host.UI.RawUI.ForegroundColor 
-    }
+    Write-Host $date -ForegroundColor $foreground -NoNewLine 
     
-    Write-Host ($date_format -f $_) -ForegroundColor $foreground -NoNewLine 
-    
-    if($date.DayOfWeek -eq "Saturday") { 
+    if($current.DayOfWeek -eq "Saturday") { 
       Write-Host "" 
     }
   }
