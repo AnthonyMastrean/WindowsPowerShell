@@ -24,7 +24,6 @@ function prompt {
 
 Set-Alias new New-Object
 Set-Alias which Get-Command
-Set-Alias bits Test-Is64Bit
 Set-Alias play Send-Sound
 Set-Alias first Select-FirstObject
 Set-Alias last Select-LastObject
