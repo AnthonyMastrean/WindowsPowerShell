@@ -16,6 +16,8 @@ function Test-IsWebsiteUp($url) {
 Set-PSReadlineOption -ExtraPromptLineCount 2
 
 function prompt {
+  $Host.UI.RawUI.ForegroundColor = $GitPromptSettings.DefaultForegroundColor
+  
   Write-Host "`n$ENV:USERNAME@$ENV:COMPUTERNAME " -ForegroundColor "DarkGreen" -NoNewLine
   Write-Host ($PWD -replace [regex]::Escape((Resolve-Path ~)), "~") -ForegroundColor "DarkYellow" -NoNewLine
   Write-VcsStatus
