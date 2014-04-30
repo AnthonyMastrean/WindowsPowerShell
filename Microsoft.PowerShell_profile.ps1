@@ -34,3 +34,4 @@ Set-Alias size Write-ItemSize
 Set-Alias cal Write-Calendar
 Set-Alias http Get-HttpStatusCode
 Set-Alias isup Test-IsWebsiteUp
+Set-Alias fastdelete Remove-ItemNative
