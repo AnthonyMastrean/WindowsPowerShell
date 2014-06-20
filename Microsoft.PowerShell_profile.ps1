@@ -32,6 +32,6 @@ Set-Alias last Select-LastObject
 Set-Alias top Select-TopObject
 Set-Alias size Write-ItemSize
 Set-Alias cal Write-Calendar
-Set-Alias http Get-HttpStatusCode
+Set-Alias httpcode Get-HttpStatusCode
 Set-Alias isup Test-IsWebsiteUp
 Set-Alias fastdelete Remove-ItemNative
