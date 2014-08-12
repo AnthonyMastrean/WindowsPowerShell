@@ -35,3 +35,4 @@ Set-Alias cal Write-Calendar
 Set-Alias httpcode Get-HttpStatusCode
 Set-Alias isup Test-IsWebsiteUp
 Set-Alias fastdelete Remove-ItemNative
+Set-Alias unzip Expand-Archive
