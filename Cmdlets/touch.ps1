@@ -6,6 +6,11 @@ function Set-FileTime {
     [string] $Path
   )
 
-  (Get-ChildItem $Path).LastWriteTime = [datetime]::Now
+  if(Test-Path $Path) {
+    (Get-ChildItem $Path).LastWriteTime = [datetime]::Now
+    return
+  }
 
+  New-Item $Path -Type "File" -Force
+  
 }
