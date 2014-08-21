@@ -37,3 +37,4 @@ Set-Alias isup Test-IsWebsiteUp
 Set-Alias fastdelete Remove-ItemNative
 Set-Alias unzip Expand-Archive
 Set-Alias touch Set-FileTime
+Set-Alias less more
