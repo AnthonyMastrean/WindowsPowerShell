@@ -10,7 +10,7 @@ $global:GitPromptSettings.EnableWindowTitle = $false
 Set-PSReadlineOption -ExtraPromptLineCount 2
 
 function prompt {
-  $Host.UI.RawUI.ForegroundColor = $GitPromptSettings.DefaultForegroundColor
+  $Host.UI.RawUI.ForegroundColor = $global:GitPromptSettings.DefaultForegroundColor
   
   Write-Host "`n$ENV:USERNAME@$ENV:COMPUTERNAME " -ForegroundColor "DarkGreen" -NoNewLine
   Write-Host ($PWD -replace [regex]::Escape($ENV:USERPROFILE), "~") -ForegroundColor "DarkYellow" -NoNewLine
