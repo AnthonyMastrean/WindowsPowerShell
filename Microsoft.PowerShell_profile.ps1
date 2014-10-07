@@ -34,3 +34,4 @@ Set-Alias touch Set-FileTime
 Set-Alias mklink New-SymbolicLink
 Set-Alias less more
 Set-Alias mnemonic Get-MnemonicName
+Set-Alias sunrise Get-Sunrise
