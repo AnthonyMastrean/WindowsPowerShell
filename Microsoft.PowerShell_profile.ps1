@@ -2,8 +2,8 @@ $here = Split-Path $PROFILE
 $cmdlets = Join-Path $here "Cmdlets"
 $modules = Join-Path $here "Modules"
 
-Get-Module -ListAvailable | ?{ $_.Path -like "$modules\*" } | Import-Module
-Get-ChildItem "$cmdlets\*.ps1" | %{ . $_.FullName }
+Get-ChildItem $modules | Import-Module
+Get-ChildItem $cmdlets | %{ . $_.FullName }
 
 $global:GitPromptSettings.EnableWindowTitle = $false
 
