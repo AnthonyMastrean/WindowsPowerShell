@@ -11,7 +11,7 @@ Set-PSReadlineOption -ExtraPromptLineCount 2
 
 function prompt {
   $Host.UI.RawUI.ForegroundColor = $global:GitPromptSettings.DefaultForegroundColor
-  
+
   Write-Host "`n$ENV:USERNAME@$ENV:COMPUTERNAME " -ForegroundColor "DarkGreen" -NoNewLine
   Write-Host ($PWD -replace [regex]::Escape($ENV:USERPROFILE), "~") -ForegroundColor "DarkYellow" -NoNewLine
   Write-VcsStatus
@@ -35,3 +35,4 @@ Set-Alias mklink New-SymbolicLink
 Set-Alias less more
 Set-Alias mnemonic Get-MnemonicName
 Set-Alias sunrise Get-Sunrise
+Set-Alias say Speak-Text
