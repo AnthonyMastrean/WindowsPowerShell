@@ -36,4 +36,3 @@ Set-Alias less more
 Set-Alias mnemonic Get-MnemonicName
 Set-Alias sunrise Get-Sunrise
 Set-Alias say Speak-Text
-Set-Alias dl Get-WebFile
