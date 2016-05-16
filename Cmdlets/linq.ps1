@@ -1,17 +1,20 @@
-function Select-FirstObject { 
-  $input | Select-Object -First 1
+function Select-FirstObject {
+  @($Input) | Select-Object -First 1
 }
 
 function Select-LastObject {
-  $input | Select-Object -Last 1
+  @($Input) | Select-Object -Last 1
 }
 
 function Select-TopObject {
   param(
-    [Parameter(Mandatory = $false)]
+    [Parameter(ValueFromPipeline = $true)]
+    $InputObject,
+
+    [Parameter(Mandatory = $false, Position = 0)]
     [ValidateNotNullOrEmpty()]
     [int] $n = 10
   )
 
-  $input | Select-Object -First $n
+  @($Input) | Select-Object -First $n
 }
