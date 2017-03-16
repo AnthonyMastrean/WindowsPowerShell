@@ -1,22 +1,22 @@
 $here = Split-Path $PROFILE
-$cmdlets = Join-Path $here "Cmdlets"
-$modules = Join-Path $here "Modules"
+$cmdlets = Join-Path $here 'Cmdlets'
+$modules = Join-Path $here 'Modules'
+
+function prompt {
+  Write-Host ''
+  Write-Host "$ENV:USERNAME@$ENV:COMPUTERNAME " -ForegroundColor 'DarkGreen' -NoNewLine
+  Write-Host ($ExecutionContext.SessionState.Path.CurrentLocation -replace [regex]::Escape($ENV:USERPROFILE), '~') -ForegroundColor 'DarkYellow' -NoNewLine
+  Write-VcsStatus
+  Write-Host ''
+  "$('PS>' * ($nestedPromptLevel + 1)) "
+}
 
 Get-ChildItem $modules | Import-Module
 Get-ChildItem $cmdlets | %{ . $_.FullName }
 
-$global:GitPromptSettings.EnableWindowTitle = $false
+$GitPromptSettings.EnableWindowTitle = $false
 
 Set-PSReadlineOption -ExtraPromptLineCount 2
-
-function prompt {
-  $Host.UI.RawUI.ForegroundColor = $global:GitPromptSettings.DefaultForegroundColor
-
-  Write-Host "`n$ENV:USERNAME@$ENV:COMPUTERNAME " -ForegroundColor "DarkGreen" -NoNewLine
-  Write-Host ($PWD -replace [regex]::Escape($ENV:USERPROFILE), "~") -ForegroundColor "DarkYellow" -NoNewLine
-  Write-VcsStatus
-  return "`nPS> "
-}
 
 Set-Alias new New-Object
 Set-Alias which Get-Command
