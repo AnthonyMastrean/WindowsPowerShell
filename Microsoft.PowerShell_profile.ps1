@@ -14,6 +14,9 @@ function prompt {
 Get-ChildItem $modules | Import-Module
 Get-ChildItem $cmdlets | %{ . $_.FullName }
 
+Import-Module "$ENV:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+Import-Module posh-docker
+
 $GitPromptSettings.EnableWindowTitle = $false
 
 Set-PSReadlineOption -ExtraPromptLineCount 2
