@@ -40,3 +40,5 @@ Set-Alias mnemonic Get-MnemonicName
 Set-Alias sunrise Get-Sunrise
 Set-Alias say Speak-Text
 Set-Alias uuidgen New-Guid
+Set-Alias time Invoke-Stopwatch
+Set-Alias watch Invoke-Watch
