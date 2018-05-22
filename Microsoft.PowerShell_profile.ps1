@@ -16,24 +16,24 @@ Get-ChildItem $cmdlets | %{ . $_.FullName }
 
 Set-PSReadlineOption -ExtraPromptLineCount 2
 
-Set-Alias new New-Object
-Set-Alias which Get-Command
-Set-Alias play Send-Sound
-Set-Alias first Select-FirstObject
-Set-Alias last Select-LastObject
-Set-Alias top Select-TopObject
-Set-Alias size Write-ItemSize
 Set-Alias cal Write-Calendar
+Set-Alias fastdelete Remove-ItemNative
+Set-Alias first Select-FirstObject
 Set-Alias httpcode Get-HttpStatusCode
 Set-Alias isup Test-IsWebsiteUp
-Set-Alias fastdelete Remove-ItemNative
-Set-Alias unzip Expand-Archive
-Set-Alias touch Set-FileTime
-Set-Alias mklink New-SymbolicLink
+Set-Alias last Select-LastObject
 Set-Alias less more
+Set-Alias mklink New-SymbolicLink
 Set-Alias mnemonic Get-MnemonicName
-Set-Alias sunrise Get-Sunrise
+Set-Alias new New-Object
+Set-Alias play Send-Sound
 Set-Alias say Speak-Text
-Set-Alias uuidgen New-Guid
+Set-Alias size Write-ItemSize
+Set-Alias sunrise Get-Sunrise
 Set-Alias time Invoke-Stopwatch
+Set-Alias top Select-TopObject
+Set-Alias touch Set-FileTime
+Set-Alias unzip Expand-Archive
+Set-Alias uuidgen New-Guid
 Set-Alias watch Invoke-Watch
+Set-Alias which Get-Command
