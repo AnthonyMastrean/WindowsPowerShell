@@ -15,6 +15,7 @@ Get-ChildItem $modules | Import-Module
 Get-ChildItem $cmdlets | %{ . $_.FullName }
 
 Set-PSReadlineOption -ExtraPromptLineCount 2
+Set-PSReadlineKeyHandler -Key Ctrl+d -Function DeleteCharOrExit
 
 Set-Alias cal Write-Calendar
 Set-Alias fastdelete Remove-ItemNative
