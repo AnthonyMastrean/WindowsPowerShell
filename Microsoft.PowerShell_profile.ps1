@@ -14,6 +14,9 @@ function prompt {
 Get-ChildItem $modules | Import-Module
 Get-ChildItem $cmdlets | %{ . $_.FullName }
 
+Import-Module posh-git
+$GitPromptSettings.EnableWindowTitle = $true
+
 Set-PSReadlineOption -ExtraPromptLineCount 2
 Set-PSReadlineKeyHandler -Key Ctrl+d -Function DeleteCharOrExit
 
