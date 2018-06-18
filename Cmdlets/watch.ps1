@@ -1,12 +1,17 @@
 function Invoke-Watch {
     [CmdletBinding()]
     param(
-        [Parameter(ValueFromPipeline = $true)]
-        [scriptblock] $InputObject = { }
+        [Parameter(Mandatory = $true)]
+        [scriptblock] $Command,
+
+        [Parameter(Mandatory = $false)]
+        [int] $Interval = 2
     )
 
     while($true) {
         Clear-Host
-        & $InputObject
+        & $Command
+
+        Start-Sleep -Seconds $Interval
     }
 }
