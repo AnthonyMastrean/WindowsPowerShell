@@ -56,7 +56,6 @@ Set-Alias play Send-Sound
 Set-Alias say Speak-Text
 Set-Alias size Write-ItemSize
 Set-Alias sunrise Get-Sunrise
-Set-Alias time Invoke-Stopwatch
 Set-Alias top Select-TopObject
 Set-Alias touch Set-FileTime
 Set-Alias unzip Expand-Archive
