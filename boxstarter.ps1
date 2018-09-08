@@ -48,6 +48,12 @@ Get-WindowsOptionalFeature -Online -FeatureName *WorkFolders* | ?{ $_.State -eq 
 
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 
+Uninstall-ChocolateyPackage `
+  -PackageName 'onedrive' `
+  -FileType 'EXE' `
+  -Silent '/VERYSILENT' `
+  -File (Get-UninstallRegistryKey -SoftwareName 'Microsoft OneDrive').UninstallString
+
 @(
     "Microsoft.BingFinance"
     "Microsoft.3DBuilder"
