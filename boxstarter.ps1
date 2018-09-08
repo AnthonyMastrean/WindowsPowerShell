@@ -40,11 +40,12 @@ Set-TaskbarOptions -Dock Left -Size Large
   
 Disable-BingSearch
 
-Get-WindowsOptionalFeature -Online -FeatureName *Internet* | ?{ $_.State -eq 'Enabled' } | Disable-WindowsOptionalFeature -Online -NoRestart
-Get-WindowsOptionalFeature -Online -FeatureName *Media* | ?{ $_.State -eq 'Enabled' } | Disable-WindowsOptionalFeature -Online -NoRestart
-Get-WindowsOptionalFeature -Online -FeatureName *Print* | ?{ $_.State -eq 'Enabled' } | Disable-WindowsOptionalFeature -Online -NoRestart
-Get-WindowsOptionalFeature -Online -FeatureName *SMB* | ?{ $_.State -eq 'Enabled' } | Disable-WindowsOptionalFeature -Online -NoRestar
-Get-WindowsOptionalFeature -Online -FeatureName *WorkFolders* | ?{ $_.State -eq 'Enabled' } | Disable-WindowsOptionalFeature -Online -NoRestart
+(Get-WindowsOptionalFeature -Online -FeatureName *Internet*) + `
+(Get-WindowsOptionalFeature -Online -FeatureName *Media*) + `
+(Get-WindowsOptionalFeature -Online -FeatureName *Print*) + `
+(Get-WindowsOptionalFeature -Online -FeatureName *SMB*) + `
+(Get-WindowsOptionalFeature -Online -FeatureName *WorkFolders*) `
+| ?{ $_.State -eq 'Enabled' } | Disable-WindowsOptionalFeature -Online -NoRestart
 
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 
@@ -98,6 +99,7 @@ Uninstall-ChocolateyPackage `
 ) | Remove-WindowsApp
 
 choco install -y `
+    1password `
     7zip `
     docker-for-windows `
     git `
