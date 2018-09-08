@@ -36,10 +36,7 @@ choco install -y
     docker-for-windows `
     git `
     googlechrome `
-    linqpad `
     notepad2-mod `
-    openssh `
-    rsync `
     vscode
 
 # powershell modules
@@ -47,9 +44,11 @@ Install-Module -Force -Name `
     posh-git `
     psreadline `
     
-# finalize!
+# remoting
 Enable-PSRemoting -Force
 Enable-RemoteDesktop
+
+# finalize!
 Enable-UAC
 Enable-MicrosoftUpdate
 Install-WindowsUpdate -AcceptEula -SuppressReboots
