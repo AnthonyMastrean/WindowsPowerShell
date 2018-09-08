@@ -6,7 +6,7 @@ function Remove-WindowsApp {
     
     # https://github.com/Microsoft/windows-dev-box-setup-scripts/blob/master/scripts/RemoveDefaultApps.ps1
     Get-AppxPackage -Name $Name -AllUsers | Remove-AppxPackage
-    Get-AppXProvisionedPackage -Online | ?{ DisplayNam -like $Name } | Remove-AppxProvisionedPackage -Online
+    Get-AppXProvisionedPackage -Online | ?{ $_.DisplayName -like $Name } | Remove-AppxProvisionedPackage -Online
 }
 
 function Set-WindowsExplorerLaunchInSeparateProcess {
