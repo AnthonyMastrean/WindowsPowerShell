@@ -31,7 +31,7 @@ Set-TaskbarOptions `
 Disable-BingSearch
 
 # chocolatey packages
-choco install -y
+choco install -y `
     7zip `
     docker-for-windows `
     git `
