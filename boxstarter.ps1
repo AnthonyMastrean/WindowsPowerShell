@@ -31,6 +31,13 @@ Set-TaskbarOptions `
   
 Disable-BingSearch
 
+Get-WindowsOptionalFeature -Online -FeatureName *Internet* | Disable-WindowsOptionalFeature -Online -NoRestart
+Get-WindowsOptionalFeature -Online -FeatureName *Media* | Disable-WindowsOptionalFeature -Online -NoRestart
+Get-WindowsOptionalFeature -Online -FeatureName *NetFx* | Disable-WindowsOptionalFeature -Online -NoRestart
+Get-WindowsOptionalFeature -Online -FeatureName *Print* | Disable-WindowsOptionalFeature -Online -NoRestart
+Get-WindowsOptionalFeature -Online -FeatureName *SMB* | Disable-WindowsOptionalFeature -Online -NoRestart
+Get-WindowsOptionalFeature -Online -FeatureName *WorkFolders* | Disable-WindowsOptionalFeature -Online -NoRestart
+
 choco install -y `
     7zip `
     docker-for-windows `
