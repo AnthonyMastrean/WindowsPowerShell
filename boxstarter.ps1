@@ -53,7 +53,7 @@ Install-Module `
     -Force `
     -Name `
         posh-git
-
-Install-WindowsUpdate `
-    -AcceptEula `
-    -SuppressReboots
+        
+Enable-UAC
+Enable-MicrosoftUpdate
+Install-WindowsUpdate -AcceptEula -SuppressReboots
