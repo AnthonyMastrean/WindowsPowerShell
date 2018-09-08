@@ -25,9 +25,7 @@ Set-TimeZone -Name 'Eastern Standard Time'
 Set-WindowsExplorerLaunchInSeparateProcess
 Set-WindowsExplorerClickState
 
-Set-TaskbarOptions `
-    -Dock Left `
-    -Size Large
+Set-TaskbarOptions -Dock Left -Size Large
   
 Disable-BingSearch
 
