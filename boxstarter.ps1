@@ -20,6 +20,8 @@ function Set-WindowsExplorerClickState {
 
 Disable-UAC
 
+Set-TimeZone -Name 'Eastern Standard Time'
+
 Set-WindowsExplorerLaunchInSeparateProcess
 Set-WindowsExplorerClickState
 
