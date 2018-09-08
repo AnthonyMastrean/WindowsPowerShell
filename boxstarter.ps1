@@ -35,12 +35,12 @@ Set-TaskbarOptions -Dock Left -Size Large
   
 Disable-BingSearch
 
-Get-WindowsOptionalFeature -Online -FeatureName *Internet* | Disable-WindowsOptionalFeature -Online -NoRestart
-Get-WindowsOptionalFeature -Online -FeatureName *Media* | Disable-WindowsOptionalFeature -Online -NoRestart
-Get-WindowsOptionalFeature -Online -FeatureName *NetFx* | Disable-WindowsOptionalFeature -Online -NoRestart
-Get-WindowsOptionalFeature -Online -FeatureName *Print* | Disable-WindowsOptionalFeature -Online -NoRestart
-Get-WindowsOptionalFeature -Online -FeatureName *SMB* | Disable-WindowsOptionalFeature -Online -NoRestar
-Get-WindowsOptionalFeature -Online -FeatureName *WorkFolders* | Disable-WindowsOptionalFeature -Online -NoRestart
+Get-WindowsOptionalFeature -Online -FeatureName *Internet* | ?{ $_.State -eq 'Enabled' } | Disable-WindowsOptionalFeature -Online -NoRestart
+Get-WindowsOptionalFeature -Online -FeatureName *Media* | ?{ $_.State -eq 'Enabled' } | Disable-WindowsOptionalFeature -Online -NoRestart
+Get-WindowsOptionalFeature -Online -FeatureName *NetFx* | ?{ $_.State -eq 'Enabled' } | Disable-WindowsOptionalFeature -Online -NoRestart
+Get-WindowsOptionalFeature -Online -FeatureName *Print* | ?{ $_.State -eq 'Enabled' } | Disable-WindowsOptionalFeature -Online -NoRestart
+Get-WindowsOptionalFeature -Online -FeatureName *SMB* | ?{ $_.State -eq 'Enabled' } | Disable-WindowsOptionalFeature -Online -NoRestar
+Get-WindowsOptionalFeature -Online -FeatureName *WorkFolders* | ?{ $_.State -eq 'Enabled' } | Disable-WindowsOptionalFeature -Online -NoRestart
 
 @(
 	"Microsoft.BingFinance"
