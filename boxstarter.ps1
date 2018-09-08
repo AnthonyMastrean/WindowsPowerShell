@@ -1,3 +1,8 @@
+function Remove-WindowsApp {
+	Get-AppxPackage -Name $Name -AllUsers | Remove-AppxPackage
+	Get-AppXProvisionedPackage -Online | ?{ DisplayNam -like $Name } | Remove-AppxProvisionedPackage -Online
+}
+
 function Set-WindowsExplorerLaunchInSeparateProcess {
     # Launch folder windows in a separate process
     #     https://github.com/mwrock/boxstarter/issues/299
@@ -33,8 +38,51 @@ Get-WindowsOptionalFeature -Online -FeatureName *Internet* | Disable-WindowsOpti
 Get-WindowsOptionalFeature -Online -FeatureName *Media* | Disable-WindowsOptionalFeature -Online -NoRestart
 Get-WindowsOptionalFeature -Online -FeatureName *NetFx* | Disable-WindowsOptionalFeature -Online -NoRestart
 Get-WindowsOptionalFeature -Online -FeatureName *Print* | Disable-WindowsOptionalFeature -Online -NoRestart
-Get-WindowsOptionalFeature -Online -FeatureName *SMB* | Disable-WindowsOptionalFeature -Online -NoRestart
+Get-WindowsOptionalFeature -Online -FeatureName *SMB* | Disable-WindowsOptionalFeature -Online -NoRestar
 Get-WindowsOptionalFeature -Online -FeatureName *WorkFolders* | Disable-WindowsOptionalFeature -Online -NoRestart
+
+@(
+	"Microsoft.BingFinance"
+	"Microsoft.3DBuilder"
+	"Microsoft.BingFinance"
+	"Microsoft.BingNews"
+	"Microsoft.BingSports"
+	"Microsoft.BingWeather"
+	"Microsoft.CommsPhone"
+	"Microsoft.Getstarted"
+	"Microsoft.WindowsMaps"
+	"*MarchofEmpires*"
+	"Microsoft.GetHelp"
+	"Microsoft.Messaging"
+	"*Minecraft*"
+	"Microsoft.MicrosoftOfficeHub"
+	"Microsoft.OneConnect"
+	"Microsoft.WindowsPhone"
+	"Microsoft.WindowsSoundRecorder"
+	"*Solitaire*"
+	"Microsoft.MicrosoftStickyNotes"
+	"Microsoft.Office.Sway"
+	"Microsoft.XboxApp"
+	"Microsoft.XboxIdentityProvider"
+	"Microsoft.ZuneMusic"
+	"Microsoft.ZuneVideo"
+	"Microsoft.NetworkSpeedTest"
+	"Microsoft.FreshPaint"
+	"Microsoft.Print3D"
+	"*Autodesk*"
+	"*BubbleWitch*"
+	"king.com.CandyCrush*"
+	"*Dell*"
+	"*Facebook*"
+	"*Keeper*"
+	"*Netflix*"
+	"*Twitter*"
+	"*Plex*"
+	"*.Duolingo-LearnLanguagesforFree"
+	"*.EclipseManager"
+	"ActiproSoftwareLLC.562882FEEB491" # Code Writer
+	"*.AdobePhotoshopExpress"
+) | Remove-WindowsApp
 
 choco install -y `
     7zip `
