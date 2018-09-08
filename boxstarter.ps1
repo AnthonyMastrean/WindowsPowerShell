@@ -21,7 +21,7 @@ function Set-WindowsExplorerClickState {
 Disable-UAC
 
 Set-WindowsExplorerLaunchInSeparateProcess
-Set-WindowsExplorerSingleClick
+Set-WindowsExplorerClickState
 Restart-Explorer
 
 Set-TaskbarOptions `
