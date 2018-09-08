@@ -46,6 +46,8 @@ Get-WindowsOptionalFeature -Online -FeatureName *Print* | ?{ $_.State -eq 'Enabl
 Get-WindowsOptionalFeature -Online -FeatureName *SMB* | ?{ $_.State -eq 'Enabled' } | Disable-WindowsOptionalFeature -Online -NoRestar
 Get-WindowsOptionalFeature -Online -FeatureName *WorkFolders* | ?{ $_.State -eq 'Enabled' } | Disable-WindowsOptionalFeature -Online -NoRestart
 
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+
 @(
     "Microsoft.BingFinance"
     "Microsoft.3DBuilder"
