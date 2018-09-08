@@ -1,59 +1,55 @@
 Disable-UAC
 
-Update-ExecutionPolicy -Policy Unrestricted
-
 Set-WindowsExplorerOptions `
-  -DisableShowHiddenFilesFoldersDrives `
-  -DisableShowProtectedOSFiles `
-  -DisableShowFileExtensions `
-  -DisableShowFullPathInTitleBar `
-  -DisableShowFrequentFoldersInQuickAccess `
-  -DisableShowRecentFilesInQuickAccess `
-  -DisableExpandToOpenFolder `
-  -DisableOpenFileExplorerToQuickAccess
+    -DisableShowHiddenFilesFoldersDrives `
+    -DisableShowProtectedOSFiles `
+    -DisableShowFileExtensions `
+    -DisableShowFullPathInTitleBar `
+    -DisableShowFrequentFoldersInQuickAccess `
+    -DisableShowRecentFilesInQuickAccess `
+    -DisableExpandToOpenFolder `
+    -DisableOpenFileExplorerToQuickAccess
 
-# https://github.com/mwrock/boxstarter/issues/299
+# Launch folder windows in a separate process
+#     https://github.com/mwrock/boxstarter/issues/299
 Set-ItemProperty `
   -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced `
   -Name SeparateProcess `
   -Value 1
   
-# https://github.com/mwrock/boxstarter/issues/300
+# Single-click to open an item
+#   https://github.com/mwrock/boxstarter/issues/300
+# _TBD_
 
 Set-TaskbarOptions `
-  -Size Large `
-  -Unlock `
-  -Dock Left `
-  -Combine Always `
-  -AlwaysShowIconsOn
-
-Enable-PSRemoting -Force
-Enable-MicrosoftUpdate
-Enable-RemoteDesktop
-Enable-UAC
-
+    -AlwaysShowIconsOn `
+    -Combine Always `
+    -Dock Left `
+    -Lock `
+    -Size Large
+  
 Disable-BingSearch
 
-Install-BoxstarterPackage `
-    -DisableReboots `
-    -DisableRestart `
-    -Force `
-    -PackageName `
-        7zip, `
-        docker, `
-        git, `
-        googlechrome, `
-        linqpad, `
-        notepad2-mod, `
-        openssh, `
-        rsync, `
-        vscode
+# chocolatey packages
+choco install -y
+    7zip `
+    docker-for-windows `
+    git `
+    googlechrome `
+    linqpad `
+    notepad2-mod `
+    openssh `
+    rsync `
+    vscode
 
-Install-Module `
-    -Force `
-    -Name `
-        posh-git
-        
+# powershell modules
+Install-Module -Force -Name `
+    posh-git `
+    psreadline `
+    
+# finalize!
+Enable-PSRemoting -Force
+Enable-RemoteDesktop
 Enable-UAC
 Enable-MicrosoftUpdate
 Install-WindowsUpdate -AcceptEula -SuppressReboots
