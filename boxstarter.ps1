@@ -1,15 +1,28 @@
+function Set-WindowsExplorerLaunchInSeparateProcess {
+    # Launch folder windows in a separate process
+    #     https://github.com/mwrock/boxstarter/issues/299
+
+    Set-ItemProperty `
+        -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced `
+        -Name SeparateProcess `
+        -Value 1
+}
+
+function Set-WindowsExplorerClickState {
+    # Single-click to open an item
+    #   https://github.com/mwrock/boxstarter/issues/300
+
+    $path = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer'
+    $shell_state = (Get-ItemProperty -Path $path).ShellState
+    $shell_state[4] = $shell_state[4] -bxor 32
+    Set-ItemProperty -Path $path -Name ShellState -Value $shell_state
+}
+
 Disable-UAC
 
-# Launch folder windows in a separate process
-#     https://github.com/mwrock/boxstarter/issues/299
-Set-ItemProperty `
-  -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced `
-  -Name SeparateProcess `
-  -Value 1
-  
-# Single-click to open an item
-#   https://github.com/mwrock/boxstarter/issues/300
-# _TBD_
+Set-WindowsExplorerLaunchInSeparateProcess
+Set-WindowsExplorerSingleClick
+Restart-Explorer
 
 Set-TaskbarOptions `
     -Dock Left `
