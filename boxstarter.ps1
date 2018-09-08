@@ -12,10 +12,7 @@ Set-ItemProperty `
 # _TBD_
 
 Set-TaskbarOptions `
-    -AlwaysShowIconsOn `
-    -Combine Always `
     -Dock Left `
-    -Lock `
     -Size Large
   
 Disable-BingSearch
