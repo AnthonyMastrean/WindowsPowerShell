@@ -22,7 +22,6 @@ Disable-UAC
 
 Set-WindowsExplorerLaunchInSeparateProcess
 Set-WindowsExplorerClickState
-Restart-Explorer
 
 Set-TaskbarOptions `
     -Dock Left `
