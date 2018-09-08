@@ -29,7 +29,6 @@ Set-TaskbarOptions `
   
 Disable-BingSearch
 
-# chocolatey packages
 choco install -y `
     7zip `
     docker-for-windows `
@@ -38,16 +37,11 @@ choco install -y `
     notepad2-mod `
     vscode
 
-# powershell modules
-Install-Module -Force -Name `
-    posh-git `
-    psreadline `
+Install-Module -Force -Name posh-git
     
-# remoting
 Enable-PSRemoting -Force
 Enable-RemoteDesktop
 
-# finalize!
 Enable-UAC
 Enable-MicrosoftUpdate
 Install-WindowsUpdate -AcceptEula -SuppressReboots
