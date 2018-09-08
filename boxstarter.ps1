@@ -1,15 +1,5 @@
 Disable-UAC
 
-Set-WindowsExplorerOptions `
-    -DisableShowHiddenFilesFoldersDrives `
-    -DisableShowProtectedOSFiles `
-    -DisableShowFileExtensions `
-    -DisableShowFullPathInTitleBar `
-    -DisableShowFrequentFoldersInQuickAccess `
-    -DisableShowRecentFilesInQuickAccess `
-    -DisableExpandToOpenFolder `
-    -DisableOpenFileExplorerToQuickAccess
-
 # Launch folder windows in a separate process
 #     https://github.com/mwrock/boxstarter/issues/299
 Set-ItemProperty `
