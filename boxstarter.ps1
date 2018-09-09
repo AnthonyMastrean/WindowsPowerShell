@@ -4,14 +4,31 @@ function Remove-WindowsApp {
         $Name
     )
     
+    Write-BoxstarterMessage “Removing Windows app ‘$Name‘” -Verbose
+    
     # https://github.com/Microsoft/windows-dev-box-setup-scripts/blob/master/scripts/RemoveDefaultApps.ps1
     Get-AppxPackage -Name $Name -AllUsers | Remove-AppxPackage
     Get-AppXProvisionedPackage -Online | ?{ $_.DisplayName -like $Name } | Remove-AppxProvisionedPackage -Online
 }
 
+function Remove-WindowsOptionalFeature {
+    param (
+        [Parameter(ValueFromPipeline = $true)]
+        $Name
+    )
+    
+    Write-BoxstarterMessage "Removing Windows optional feature '$Name'" -Verbose
+    
+    Get-WindowsOptionalFeature -Online -FeatureName $Name `
+    | ?{ $_.State -eq 'Enabled' } `
+    | Remove-WindowsOptionalFeature -Online -NoRestart
+}
+
 function Set-WindowsExplorerLaunchInSeparateProcess {
     # Launch folder windows in a separate process
     #     https://github.com/mwrock/boxstarter/issues/299
+
+    Write-BoxstarterMessage “Launch Windows Explorer in separate process“ -Verbose
 
     Set-ItemProperty `
         -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced `
@@ -22,6 +39,8 @@ function Set-WindowsExplorerLaunchInSeparateProcess {
 function Set-WindowsExplorerClickState {
     # Single-click to open an item
     #   https://github.com/mwrock/boxstarter/issues/300
+
+    Write-BoxstarterMessage “Set Windows Explorer to single-click” -Verbose
 
     $path = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer'
     $shell_state = (Get-ItemProperty -Path $path).ShellState
@@ -40,20 +59,15 @@ Set-TaskbarOptions -Dock Left -Size Large
   
 Disable-BingSearch
 
-(Get-WindowsOptionalFeature -Online -FeatureName *Internet*) + `
-(Get-WindowsOptionalFeature -Online -FeatureName *Media*) + `
-(Get-WindowsOptionalFeature -Online -FeatureName *Print*) + `
-(Get-WindowsOptionalFeature -Online -FeatureName *SMB*) + `
-(Get-WindowsOptionalFeature -Online -FeatureName *WorkFolders*) `
-| ?{ $_.State -eq 'Enabled' } | Disable-WindowsOptionalFeature -Online -NoRestart
+@(
+    "*Internet*"
+    "*Media*"
+    "*Print*"
+    "*SMB*"
+    "*WorkFolders*"
+) | Remove-WindowsOptionalFeature
 
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
-
-Uninstall-ChocolateyPackage `
-  -PackageName 'onedrive' `
-  -FileType 'EXE' `
-  -Silent '/VERYSILENT' `
-  -File (Get-UninstallRegistryKey -SoftwareName 'Microsoft OneDrive').UninstallString
 
 @(
     "Microsoft.BingFinance"
@@ -97,6 +111,12 @@ Uninstall-ChocolateyPackage `
     "ActiproSoftwareLLC.562882FEEB491" # Code Writer
     "*.AdobePhotoshopExpress"
 ) | Remove-WindowsApp
+
+Uninstall-ChocolateyPackage `
+  -PackageName 'onedrive' `
+  -FileType 'EXE' `
+  -Silent '/VERYSILENT /UNINSTALL' `
+  -File (-split (Get-UninstallRegistryKey -SoftwareName 'Microsoft OneDrive').UninstallString)[0]
 
 choco install -y `
     1password `
