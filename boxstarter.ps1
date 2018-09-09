@@ -4,7 +4,7 @@ function Remove-WindowsApp {
         $Name
     )
     
-    Write-BoxstarterMessage “Removing Windows app ‘$Name‘” -Verbose
+    Write-BoxstarterMessage "Removing Windows app '$Name'" -Verbose
     
     # https://github.com/Microsoft/windows-dev-box-setup-scripts/blob/master/scripts/RemoveDefaultApps.ps1
     Get-AppxPackage -Name $Name -AllUsers | Remove-AppxPackage
@@ -28,7 +28,7 @@ function Set-WindowsExplorerLaunchInSeparateProcess {
     # Launch folder windows in a separate process
     #     https://github.com/mwrock/boxstarter/issues/299
 
-    Write-BoxstarterMessage “Launch Windows Explorer in separate process“ -Verbose
+    Write-BoxstarterMessage "Launch Windows Explorer in separate process" -Verbose
 
     Set-ItemProperty `
         -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced `
@@ -40,7 +40,7 @@ function Set-WindowsExplorerClickState {
     # Single-click to open an item
     #   https://github.com/mwrock/boxstarter/issues/300
 
-    Write-BoxstarterMessage “Set Windows Explorer to single-click” -Verbose
+    Write-BoxstarterMessage "Set Windows Explorer to single-click" -Verbose
 
     $path = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer'
     $shell_state = (Get-ItemProperty -Path $path).ShellState
@@ -60,11 +60,12 @@ Set-TaskbarOptions -Dock Left -Size Large
 Disable-BingSearch
 
 @(
-    "*Internet*"
-    "*Media*"
-    "*Print*"
+    "Internet-Explorer-*"
+    "MediaPlayback"
+    "WindowsMediaPlayer"
+    "*Printing*"
     "*SMB*"
-    "*WorkFolders*"
+    "*WorkFolders-Client"
 ) | Remove-WindowsOptionalFeature
 
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
