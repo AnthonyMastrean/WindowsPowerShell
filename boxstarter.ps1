@@ -21,7 +21,7 @@ function Remove-WindowsOptionalFeature {
     
     Get-WindowsOptionalFeature -Online -FeatureName $Name `
     | ?{ $_.State -eq 'Enabled' } `
-    | Remove-WindowsOptionalFeature -Online -NoRestart
+    | Disable-WindowsOptionalFeature -Online -NoRestart
 }
 
 function Set-WindowsExplorerLaunchInSeparateProcess {
