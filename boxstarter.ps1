@@ -114,11 +114,13 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
     "*.AdobePhotoshopExpress"
 ) | Remove-WindowsApp
 
-Uninstall-ChocolateyPackage `
-  -PackageName 'onedrive' `
-  -FileType 'EXE' `
-  -Silent '/VERYSILENT /UNINSTALL' `
-  -File (-split (Get-UninstallRegistryKey -SoftwareName 'Microsoft OneDrive').UninstallString)[0]
+if (Get-UninstallRegistryKey -SoftwareName 'Microsoft OneDrive') {
+    Uninstall-ChocolateyPackage `
+      -PackageName 'onedrive' `
+      -FileType 'EXE' `
+      -Silent '/VERYSILENT /UNINSTALL' `
+      -File (-split (Get-UninstallRegistryKey -SoftwareName 'Microsoft OneDrive').UninstallString)[0]
+}
 
 choco install -y `
     1password `
