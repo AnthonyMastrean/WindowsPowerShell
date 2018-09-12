@@ -48,6 +48,7 @@ function Set-WindowsExplorerClickState {
     Set-ItemProperty -Path $path -Name ShellState -Value $shell_state
 }
 
+Set-ExecutionPolicy -Unrestricted
 Disable-UAC
 
 Set-TimeZone -Name 'Eastern Standard Time'
@@ -56,7 +57,7 @@ Set-WindowsExplorerLaunchInSeparateProcess
 Set-WindowsExplorerClickState
 
 Set-TaskbarOptions -Dock Left -Size Large
-  
+
 Disable-BingSearch
 
 @(
