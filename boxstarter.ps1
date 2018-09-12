@@ -4,11 +4,13 @@ function Remove-WindowsApp {
         $Name
     )
     
-    Write-Output "Boxstarter: Removing Windows app '$Name'" -Verbose
+    $Input | %{
+        Write-Output "Boxstarter: Removing Windows app '$Name'" -Verbose
     
-    # https://github.com/Microsoft/windows-dev-box-setup-scripts/blob/master/scripts/RemoveDefaultApps.ps1
-    Get-AppxPackage -Name $Name -AllUsers | Remove-AppxPackage
-    Get-AppXProvisionedPackage -Online | ?{ $_.DisplayName -like $Name } | Remove-AppxProvisionedPackage -Online
+        # https://github.com/Microsoft/windows-dev-box-setup-scripts/blob/master/scripts/RemoveDefaultApps.ps1
+        Get-AppxPackage -Name $_ -AllUsers | Remove-AppxPackage
+        Get-AppXProvisionedPackage -Online | ?{ $_.DisplayName -like $_ } | Remove-AppxProvisionedPackage -Online
+    }
 }
 
 function Remove-WindowsOptionalFeature {
@@ -17,11 +19,13 @@ function Remove-WindowsOptionalFeature {
         $Name
     )
     
-    Write-Output "Boxstarter: Removing Windows optional feature '$Name'" -Verbose
+    $Input | %{ 
+        Write-Output "Boxstarter: Removing Windows optional feature '$Name'" -Verbose
     
-    Get-WindowsOptionalFeature -Online -FeatureName $Name `
-    | ?{ $_.State -eq 'Enabled' } `
-    | Disable-WindowsOptionalFeature -Online -NoRestart
+        Get-WindowsOptionalFeature -Online -FeatureName $_ `
+        | ?{ $_.State -eq 'Enabled' } `
+        | Disable-WindowsOptionalFeature -Online -NoRestart
+    }
 }
 
 function Set-WindowsExplorerLaunchInSeparateProcess {
