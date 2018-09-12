@@ -5,7 +5,7 @@ function Remove-WindowsApp {
     )
     
     $Input | %{
-        Write-Output "Boxstarter: Removing Windows app '$Name'" -Verbose
+        Write-Output "Boxstarter: Removing Windows app '$_'" -Verbose
     
         # https://github.com/Microsoft/windows-dev-box-setup-scripts/blob/master/scripts/RemoveDefaultApps.ps1
         Get-AppxPackage -Name $_ -AllUsers | Remove-AppxPackage
@@ -20,7 +20,7 @@ function Remove-WindowsOptionalFeature {
     )
     
     $Input | %{ 
-        Write-Output "Boxstarter: Removing Windows optional feature '$Name'" -Verbose
+        Write-Output "Boxstarter: Removing Windows optional feature '$_'" -Verbose
     
         Get-WindowsOptionalFeature -Online -FeatureName $_ `
         | ?{ $_.State -eq 'Enabled' } `
