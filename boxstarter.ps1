@@ -4,7 +4,7 @@ function Remove-WindowsApp {
         $Name
     )
     
-    Write-BoxstarterMessage "Removing Windows app '$Name'" -Verbose
+    Write-Output "Boxstarter: Removing Windows app '$Name'" -Verbose
     
     # https://github.com/Microsoft/windows-dev-box-setup-scripts/blob/master/scripts/RemoveDefaultApps.ps1
     Get-AppxPackage -Name $Name -AllUsers | Remove-AppxPackage
@@ -17,7 +17,7 @@ function Remove-WindowsOptionalFeature {
         $Name
     )
     
-    Write-BoxstarterMessage "Removing Windows optional feature '$Name'" -Verbose
+    Write-Output "Boxstarter: Removing Windows optional feature '$Name'" -Verbose
     
     Get-WindowsOptionalFeature -Online -FeatureName $Name `
     | ?{ $_.State -eq 'Enabled' } `
@@ -28,7 +28,7 @@ function Set-WindowsExplorerLaunchInSeparateProcess {
     # Launch folder windows in a separate process
     #     https://github.com/mwrock/boxstarter/issues/299
 
-    Write-BoxstarterMessage "Launch Windows Explorer in separate process" -Verbose
+    Write-Output "Boxstarter: Launch Windows Explorer in separate process" -Verbose
 
     Set-ItemProperty `
         -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced `
@@ -40,7 +40,7 @@ function Set-WindowsExplorerClickState {
     # Single-click to open an item
     #   https://github.com/mwrock/boxstarter/issues/300
 
-    Write-BoxstarterMessage "Set Windows Explorer to single-click" -Verbose
+    Write-Output "Boxstarter: Set Windows Explorer to single-click" -Verbose
 
     $path = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer'
     $shell_state = (Get-ItemProperty -Path $path).ShellState
