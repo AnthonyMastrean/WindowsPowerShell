@@ -110,6 +110,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
     "Microsoft.Office.Sway"
     "Microsoft.OneConnect"
     "Microsoft.Print3D"
+    "Microsoft.SkypeApp"
     "Microsoft.WindowsMaps"
     "Microsoft.WindowsPhone"
     "Microsoft.WindowsSoundRecorder"
