@@ -48,7 +48,7 @@ function Set-WindowsExplorerClickState {
     Set-ItemProperty -Path $path -Name ShellState -Value $shell_state
 }
 
-Set-ExecutionPolicy -Unrestricted
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted
 Disable-UAC
 
 Set-TimeZone -Name 'Eastern Standard Time'
