@@ -106,10 +106,13 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
     "Microsoft.GetHelp"
     "Microsoft.Getstarted"
     "Microsoft.Messaging"
+    "Microsoft.Microsoft3DViewer"
     "Microsoft.MicrosoftOfficeHub"
     "Microsoft.MicrosoftStickyNotes"
     "Microsoft.NetworkSpeedTest"
     "Microsoft.MicrosoftOfficeHub"
+    "Microsoft.Print3D"
+    # Paint?
     "Microsoft.Office.OneNote"
     "Microsoft.Office.Sway"
     "Microsoft.OneConnect"
