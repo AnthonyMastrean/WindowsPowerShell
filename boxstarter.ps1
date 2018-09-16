@@ -147,6 +147,7 @@ choco install -y `
     vscode
 
 Install-Module -Force -Name posh-git
+Install-Module -Force -Name psake
     
 Enable-PSRemoting -Force
 Enable-RemoteDesktop
