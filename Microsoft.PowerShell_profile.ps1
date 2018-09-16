@@ -11,8 +11,8 @@ function prompt {
   "$('PS>' * ($nestedPromptLevel + 1)) "
 }
 
-Get-ChildItem $modules | Import-Module
-Get-ChildItem $cmdlets | %{ . $_.FullName }
+if (Test-Path -Path $modules) { Get-ChildItem $modules | Import-Module }
+if (Test-Path -Path $cmdlets) { Get-ChildItem $cmdlets | %{ . $_.FullName } }
 
 Import-Module posh-git
 $GitPromptSettings.EnableWindowTitle = $true
