@@ -141,6 +141,7 @@ choco install -y `
     docker-for-windows `
     git `
     googlechrome `
+    gpg4win-vanilla `
     keybase `
     notepad2-mod `
     vscode
