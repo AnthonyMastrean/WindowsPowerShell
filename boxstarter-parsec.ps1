@@ -54,13 +54,10 @@ Disable-BingSearch
     "*WorkFolders-Client"
 ) | Remove-WindowsOptionalFeature
 
-choco install -y `
-    1password `   
-    consoleclassix `
-    steam
-    
 choco install -y --pre `
+    consoleclassix `
     rpcs3 `
+    steam `
     supermarioflashback
 
 Enable-PSRemoting -Force
