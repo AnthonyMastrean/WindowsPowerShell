@@ -1,18 +1,3 @@
-function Remove-WindowsApp {
-    param (
-        [Parameter(ValueFromPipeline = $true)]
-        $Name
-    )
-    
-    $Input | %{
-        Write-Output "Boxstarter: Removing Windows app '$_'" -Verbose
-    
-        # https://github.com/Microsoft/windows-dev-box-setup-scripts/blob/master/scripts/RemoveDefaultApps.ps1
-        Get-AppxPackage -Name $_ -AllUsers | Remove-AppxPackage
-        Get-AppXProvisionedPackage -Online | ?{ $_.DisplayName -like $_ } | Remove-AppxProvisionedPackage -Online
-    }
-}
-
 function Remove-WindowsOptionalFeature {
     param (
         [Parameter(ValueFromPipeline = $true)]
@@ -62,7 +47,6 @@ Set-TaskbarOptions -Dock Left -Size Large
 Disable-BingSearch
 
 @(
-    "Internet-Explorer-*"
     "MediaPlayback"
     "WindowsMediaPlayer"
     "*Printing*"
@@ -70,75 +54,12 @@ Disable-BingSearch
     "*WorkFolders-Client"
 ) | Remove-WindowsOptionalFeature
 
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
-
-@(
-    "*.AdobePhotoshopExpress"
-    "*.Duolingo-LearnLanguagesforFree"
-    "*.EclipseManager"
-    "*Autodesk*"
-    "*BubbleWitch*"
-    "*Dell*"
-    "*Dolby*"
-    "*Facebook*"
-    "*HiddenCity*"
-    "*Keeper*"
-    "*MarchofEmpires*"
-    "*Minecraft*"
-    "*Netflix*"
-    "*Plex*"
-    "*Solitaire*"
-    "*Twitter*"
-    "*Xbox*"
-    "ActiproSoftwareLLC.562882FEEB491"
-    "king.com.CandyCrush*"
-    "Microsoft.3DBuilder"
-    "Microsoft.BingFinance"
-    "Microsoft.BingFinance"
-    "Microsoft.BingNews"
-    "Microsoft.BingSports"
-    "Microsoft.BingWeather"
-    "Microsoft.CommsPhone"
-    "Microsoft.FreshPaint"
-    "Microsoft.GetHelp"
-    "Microsoft.Getstarted"
-    "Microsoft.Messaging"
-    "Microsoft.Microsoft3DViewer"
-    "Microsoft.MicrosoftOfficeHub"
-    "Microsoft.MicrosoftStickyNotes"
-    "Microsoft.NetworkSpeedTest"
-    "Microsoft.MicrosoftOfficeHub"
-    "Microsoft.Print3D"
-    # Paint?
-    "Microsoft.Office.OneNote"
-    "Microsoft.Office.Sway"
-    "Microsoft.OneConnect"
-    "Microsoft.Print3D"
-    "Microsoft.SkypeApp"
-    "Microsoft.WindowsMaps"
-    "Microsoft.WindowsPhone"
-    "Microsoft.WindowsSoundRecorder"
-    "Microsoft.XboxApp"
-    "Microsoft.XboxIdentityProvider"
-    "Microsoft.ZuneMusic"
-    "Microsoft.ZuneVideo"
-) | Remove-WindowsApp
-
-if ($onedrive = Get-UninstallRegistryKey -SoftwareName 'Microsoft OneDrive') {
-    Uninstall-ChocolateyPackage `
-      -PackageName 'onedrive' `
-      -FileType 'EXE' `
-      -Silent '/VERYSILENT /UNINSTALL' `
-      -File (-split $onedrive.UninstallString)[0]
-}
-
 choco install -y `
     1password `   
     consoleclassix `
     steam
     
 choco install -y --pre `
-    parsec `
     rpcs3 `
     supermarioflashback
 
