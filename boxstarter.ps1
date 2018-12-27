@@ -146,6 +146,8 @@ choco install -y `
     notepad2-mod `
     vscode
 
+choco install scansnapmanager --version 5.5.10.20160802
+
 Install-Module -Force -Name posh-git
 Install-Module -Force -Name psake
     
