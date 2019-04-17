@@ -138,9 +138,8 @@ if ($onedrive = Get-UninstallRegistryKey -SoftwareName 'Microsoft OneDrive') {
 choco install -y `
     1password `
     7zip `
-    docker-for-windows `
+    docker-desktop `
     git `
-    googlechrome `
     gpg4win-light `
     keybase `
     notepad2-mod `
