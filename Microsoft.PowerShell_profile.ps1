@@ -17,6 +17,12 @@ if (Test-Path -Path $cmdlets) { Get-ChildItem $cmdlets | %{ . $_.FullName } }
 Import-Module posh-git
 $GitPromptSettings.EnableWindowTitle = $true
 
+# chocolatey
+$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+if (Test-Path($ChocolateyProfile)) {
+  Import-Module "$ChocolateyProfile"
+}
+
 Set-PSReadlineOption -ExtraPromptLineCount 2
 Set-PSReadlineKeyHandler -Key Ctrl+d -Function DeleteCharOrExit
 
