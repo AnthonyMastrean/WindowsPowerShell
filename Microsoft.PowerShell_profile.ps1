@@ -3,16 +3,16 @@ $cmdlets = Join-Path $here 'Cmdlets'
 $modules = Join-Path $here 'Modules'
 
 function prompt {
-  Write-Host ''
-  Write-Host "$ENV:USERNAME@$ENV:COMPUTERNAME " -ForegroundColor 'DarkGreen' -NoNewLine
-  Write-Host ($ExecutionContext.SessionState.Path.CurrentLocation -replace [regex]::Escape($ENV:USERPROFILE), '~') -ForegroundColor 'DarkYellow' -NoNewLine
-  Write-VcsStatus
-  Write-Host ''
-  "$('PS>' * ($nestedPromptLevel + 1)) "
+    Write-Host ''
+    Write-Host "$ENV:USERNAME@$ENV:COMPUTERNAME " -ForegroundColor 'DarkGreen' -NoNewLine
+    Write-Host ($ExecutionContext.SessionState.Path.CurrentLocation -replace [regex]::Escape($ENV:USERPROFILE), '~') -ForegroundColor 'DarkYellow' -NoNewLine
+    Write-VcsStatus
+    Write-Host ''
+    "$('PS>' * ($nestedPromptLevel + 1)) "
 }
 
 if (Test-Path -Path $modules) { Get-ChildItem $modules | Import-Module }
-if (Test-Path -Path $cmdlets) { Get-ChildItem $cmdlets | %{ . $_.FullName } }
+if (Test-Path -Path $cmdlets) { Get-ChildItem $cmdlets | % { . $_.FullName } }
 
 # posh-git
 Import-Module posh-git
@@ -21,7 +21,7 @@ $GitPromptSettings.EnableWindowTitle = $true
 # chocolatey
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) {
-  Import-Module "$ChocolateyProfile"
+    Import-Module "$ChocolateyProfile"
 }
 
 Set-PSReadlineOption -ExtraPromptLineCount 2
