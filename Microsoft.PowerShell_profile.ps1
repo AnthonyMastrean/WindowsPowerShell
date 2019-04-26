@@ -14,7 +14,9 @@ function prompt {
 if (Test-Path -Path $modules) { Get-ChildItem $modules | Import-Module }
 if (Test-Path -Path $cmdlets) { Get-ChildItem $cmdlets | %{ . $_.FullName } }
 
+# posh-git
 Import-Module posh-git
+Start-SshAgent -Quiet
 $GitPromptSettings.EnableWindowTitle = $true
 
 # chocolatey
