@@ -16,7 +16,6 @@ if (Test-Path -Path $cmdlets) { Get-ChildItem $cmdlets | %{ . $_.FullName } }
 
 # posh-git
 Import-Module posh-git
-Start-SshAgent -Quiet
 $GitPromptSettings.EnableWindowTitle = $true
 
 # chocolatey
