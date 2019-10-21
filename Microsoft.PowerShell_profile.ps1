@@ -4,7 +4,6 @@ $cmdlets = Join-Path $here 'Cmdlets'
 if (Test-Path -Path $cmdlets) { Get-ChildItem $cmdlets | %{ . $_.FullName } }
 
 # prompt
-Import-Module oh-my-posh, posh-git
 Set-Theme Paradox
 
 # chocolatey
