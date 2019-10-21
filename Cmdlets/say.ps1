@@ -6,6 +6,6 @@ function Speak-Text {
     [string] $text
   )
 
-  $voice = New-Object System.Speech.Synthesis.SpeechSynthesizer
+  $voice = New-Object -TypeName System.Speech.Synthesis.SpeechSynthesizer
   $voice.Speak($text)
 }

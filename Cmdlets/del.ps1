@@ -2,9 +2,9 @@ function Remove-ItemNative {
   param(
     [Parameter(Mandatory = $true)]
     [ValidateNotNullOrEmpty()]
-    [string] $path
+    [string] $Path
   )
 
-  cmd /C "del /f/s/q $path > nul"
-  cmd /C "rmdir /s/q $path"
+  cmd /C "del /f/s/q $Path > nul"
+  cmd /C "rmdir /s/q $Path"
 }
