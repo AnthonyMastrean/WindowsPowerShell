@@ -34,6 +34,7 @@ Set-Alias -Name mnemonic -Value Get-MnemonicName
 Set-Alias -Name play -Value Send-Sound
 Set-Alias -Name say -Value Speak-Text
 Set-Alias -Name size -Value Write-ItemSize
+Set-Alias -Name time -Value Invoke-Stopwatch
 Set-Alias -Name top -Value Select-TopObject
 Set-Alias -Name touch -Value Set-FileTime
 Set-Alias -Name watch -Value Invoke-Watch
