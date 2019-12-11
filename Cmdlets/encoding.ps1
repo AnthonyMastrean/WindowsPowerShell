@@ -4,7 +4,7 @@ function ConvertTo-Base64 {
         [string] $Text
     )
 
-    [System.Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($Text))
+    [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($Text))
 }
 
 function ConvertFrom-Base64 {
@@ -13,7 +13,7 @@ function ConvertFrom-Base64 {
         [string] $Text
     )
 
-    [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($Text))
+    [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($Text))
 }
 
 function ConvertTo-Html {
