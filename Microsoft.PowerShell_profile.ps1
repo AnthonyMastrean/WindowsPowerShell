@@ -12,7 +12,7 @@ function prompt {
 }
 
 if (Test-Path -Path $modules) { Get-ChildItem $modules | Import-Module }
-if (Test-Path -Path $cmdlets) { Get-ChildItem $cmdlets | %{ . $_.FullName } }
+if (Test-Path -Path $cmdlets) { Get-ChildItem $cmdlets | % { . $_.FullName } }
 
 # prompt
 Import-Module posh-git
@@ -37,7 +37,7 @@ Set-Alias -Name uuidgen -Value New-Guid
 Set-Alias -Name which -Value Get-Command
 
 # custom aliases
-Set-Alias -Name cal -Value Write-Calendar
+Set-Alias -Name cal -Value Show-Calendar
 Set-Alias -Name del -Value Remove-ItemNative -Option AllScope -Force
 Set-Alias -Name first -Value Select-FirstObject
 Set-Alias -Name http -Value Get-HttpStatusCodeInfo
