@@ -1,7 +1,7 @@
 function Get-HttpStatusCodeInfo([int]$code) {
-    $url = "http://httpcode.info/$code"
+    $uri = "http://httpcode.info/$code"
 
     Invoke-RestMethod `
-        -Uri $url `
-        -UserAgent 'curl'
+        -Uri $uri `
+        -UserAgent curl
 }
