@@ -16,7 +16,7 @@ function ConvertFrom-Base64 {
     [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($Text))
 }
 
-function ConvertTo-Html {
+function ConvertTo-HtmlEncode {
     param(
         [Parameter(Mandatory = $true)]
         [string] $Text
@@ -25,7 +25,7 @@ function ConvertTo-Html {
     [System.Net.WebUtility]::HtmlEncode($Text)
 }
 
-function ConvertFrom-Html {
+function ConvertFrom-HtmlEncode {
     param(
         [Parameter(Mandatory = $true)]
         [string] $Text
@@ -34,7 +34,7 @@ function ConvertFrom-Html {
     [System.Net.WebUtility]::HtmlDecode($Text)
 }
 
-function ConvertTo-Url {
+function ConvertTo-UrlEncode {
     param(
         [Parameter(Mandatory = $true)]
         [string] $Text
@@ -43,7 +43,7 @@ function ConvertTo-Url {
     [System.Net.WebUtility]::UrlEncode($Text)
 }
 
-function ConvertFrom-Url {
+function ConvertFrom-UrlEncode {
     param(
         [Parameter(Mandatory = $true)]
         [string] $Text
