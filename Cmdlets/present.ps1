@@ -59,14 +59,18 @@ public static class QueryUserNotificationState
 
 Add-Type -TypeDefinition $typeDef -PassThru | Out-Null
 
-function Set-PresentationMode {
-    [CmdletBinding()]
-    param()
+function Get-UserNotificationState {
+    [QueryUserNotificationState]::GetState()
+}
 
-    $state = [QueryUserNotificationState]::GetState()
-    $toggle = @{$true={PresentationSettings /start};$false={PresentationSettings /stop}}
+function Start-PresentationMode {
+    & PresentationSettings /start
+    while ([QueryUserNotificationState]::GetState() -ne 'PresentationMode') { }
+    [QueryUserNotificationState]::GetState()
+}
 
-    Write-Debug "UserNotificationState::$state"
-
-    & $toggle[($state -ne 'PresentationMode')]
+function Stop-PresentationMode {
+    & PresentationSettings /stop
+    while ([QueryUserNotificationState]::GetState() -eq 'PresentationMode') { }
+    [QueryUserNotificationState]::GetState()
 }
