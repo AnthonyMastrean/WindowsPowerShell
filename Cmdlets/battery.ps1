@@ -8,12 +8,9 @@ function Show-BatteryStatus {
             ⚡  0% [    ]
     #>
 
-    $batterySymbol = [char]::ConvertFromUtf32(0x26A1)
-
+    $emoji = [char]::ConvertFromUtf32(0x26A1)
     $battery = Get-WmiObject -ClassName Win32_Battery # estimated charge 0..100
     $chunk = [System.Math]::Ceiling($battery.EstimatedChargeRemaining / 25) # fit between 0..4
 
-    $display += "{0} {1,3}% [{2}{3}]" -f $batterySymbol, $battery.EstimatedChargeRemaining, ('+' * $chunk), (' ' * (4 - $chunk))
-
-    $display
+    "{0} {1,3}% [{2}{3}]" -f $emoji, $battery.EstimatedChargeRemaining, ('+' * $chunk), (' ' * (4 - $chunk))
 }
