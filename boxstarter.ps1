@@ -3,13 +3,13 @@ function Remove-WindowsApp {
         [Parameter(ValueFromPipeline = $true)]
         $Name
     )
-    
-    $Input | %{
+
+    $Input | % {
         Write-Output "Boxstarter: Removing Windows app '$_'" -Verbose
-    
+
         # https://github.com/Microsoft/windows-dev-box-setup-scripts/blob/master/scripts/RemoveDefaultApps.ps1
         Get-AppxPackage -Name $_ -AllUsers | Remove-AppxPackage
-        Get-AppXProvisionedPackage -Online | ?{ $_.DisplayName -like $_ } | Remove-AppxProvisionedPackage -Online
+        Get-AppXProvisionedPackage -Online | ? { $_.DisplayName -like $_ } | Remove-AppxProvisionedPackage -Online
     }
 }
 
@@ -18,12 +18,12 @@ function Remove-WindowsOptionalFeature {
         [Parameter(ValueFromPipeline = $true)]
         $Name
     )
-    
-    $Input | %{ 
+
+    $Input | % {
         Write-Output "Boxstarter: Removing Windows optional feature '$_'" -Verbose
-    
+
         Get-WindowsOptionalFeature -Online -FeatureName $_ `
-        | ?{ $_.State -eq 'Enabled' } `
+        | ? { $_.State -eq 'Enabled' } `
         | Disable-WindowsOptionalFeature -Online -NoRestart
     }
 }
@@ -129,10 +129,10 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 
 if ($onedrive = Get-UninstallRegistryKey -SoftwareName 'Microsoft OneDrive') {
     Uninstall-ChocolateyPackage `
-      -PackageName 'onedrive' `
-      -FileType 'EXE' `
-      -Silent '/VERYSILENT /UNINSTALL' `
-      -File (-split $onedrive.UninstallString)[0]
+        -PackageName 'onedrive' `
+        -FileType 'EXE' `
+        -Silent '/VERYSILENT /UNINSTALL' `
+        -File (-split $onedrive.UninstallString)[0]
 }
 
 choco install -y `
@@ -142,14 +142,13 @@ choco install -y `
     git `
     gpg4win-light `
     keybase `
-    notepad2-mod `
     vscode
 
 choco install scansnapmanager --version 5.5.10.20160802
 
 Install-Module -Force -Name posh-git
 Install-Module -Force -Name psake
-    
+
 Enable-PSRemoting -Force
 Enable-RemoteDesktop
 
